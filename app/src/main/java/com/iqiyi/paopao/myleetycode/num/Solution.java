@@ -1,5 +1,7 @@
 package com.iqiyi.paopao.myleetycode.num;
 
+import android.app.usage.UsageStats;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -181,7 +183,7 @@ public class Solution {
 
     }
     //数组中次数超过一半的数字
-    public int majorityElement(int[] nums) {
+    public static int majorityElement(int[] nums) {
         int j = 0;
         int counter = 0;
 
@@ -197,7 +199,7 @@ public class Solution {
         }
         ArrayList<Integer> arrayList = new ArrayList<>();
         for (Map.Entry<Integer, Integer> entry : hashMap.entrySet()) {
-            if(entry.getValue() >= 0) {
+            if(entry.getValue() >= nums.length/2) {
                 arrayList.add(entry.getKey());
             }
         }
@@ -206,13 +208,83 @@ public class Solution {
             arr[i] = arrayList.get(i);
 
         }
-        return arr;
+        return arr[0];
+
+    }
+//和为S的两个数
+public int[] twoSumss(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length-1;
+        int [] result = new int[2];
+        while (start <= end) {
+            if(nums[start] +nums[end] == target) {
+                result[0] = nums[start];
+                result [1] =  nums[end];
+                return result;
+            } else  if(nums[start] +nums[end] < start) {
+                start++;
+            } else {
+                end --;
+            }
+        }
+        return result;
+
+}
+    //数组中的逆序对
+    public static int reversePairs(int[] nums) {
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i; j < nums.length-1; j++) {
+                if(nums[i] > nums[j+1]) {
+                    count ++;
+
+                }
+            }
+
+        }
+        return count;
 
     }
 
+//把奇数放到偶数的前面
+    public int[] exchange(int[] nums) {
+        int left = 0;
+        int end = nums.length-1;
+        while (left <= end) {
+            if(nums[left] %2 != 0) {
+                left++;
+                continue;
+            }
+            if(nums[end] %2 != 1) {
+                end --;
+                continue;
+            }
+            int replace = nums[left];
+            nums[left] = nums[end];
+            nums[end] = replace;
+        }
+        return nums;
 
+    }
+    //二分查找
 
+    public int search(int[] nums, int target) {
+        int left = 0;
+        int end  = nums.length-1;
+        while (left <= end) {
+            int middle = left + (end - left) / 2;
+            if(nums[middle] == target) {
+                return middle;
+            } else if(nums[middle] < target) {
+                left = middle +1;
 
+            } else {
+                end = middle -1;
+            }
+        }
+        return -1;
+
+    }
 
 
 }
