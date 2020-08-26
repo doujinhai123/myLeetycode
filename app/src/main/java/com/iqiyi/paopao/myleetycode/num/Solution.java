@@ -268,36 +268,52 @@ public int[] twoSumss(int[] nums, int target) {
     }
     //二分查找
 
-    public int search(int[] nums, int target) {
-        int left = 0;
-        int end  = nums.length-1;
-        while (left <= end) {
-            int middle = left + (end - left) / 2;
-            if(nums[middle] == target) {
-                return middle;
-            } else if(nums[middle] < target) {
-                left = middle +1;
-
-            } else {
-                end = middle -1;
-            }
-        }
-        return -1;
-
-    }
+//    public int search(int[] nums, int target) {
+//        int left = 0;
+//        int end  = nums.length-1;
+//        while (left <= end) {
+//            int middle = left + (end - left) / 2;
+//            if(nums[middle] == target) {
+//                return middle;
+//            } else if(nums[middle] < target) {
+//                left = middle +1;
+//
+//            } else {
+//                end = middle -1;
+//            }
+//        }
+//        return -1;
+//
+//    }
     //把数组排成最小的数
-    public String minNumber(int[] nums) {
-        String[] strs = new String[nums.length];
-        for(int i = 0; i < nums.length; ++i)
-            strs[i] = String.valueOf(nums[i]);
-        Arrays.sort(strs,(o1,o2) -> {
-            return (o1+o2).compareTo(o2+o1);
-        });
-        StringBuilder sb = new StringBuilder();
-        for(String s: strs)
-            sb.append(s);
-        return sb.toString();
+//    public String minNumber(int[] nums) {
+//        String[] strs = new String[nums.length];
+//        for(int i = 0; i < nums.length; ++i)
+//            strs[i] = String.valueOf(nums[i]);
+//        Arrays.sort(strs,(o1,o2) -> {
+//            return (o1+o2).compareTo(o2+o1);
+//        });
+//        StringBuilder sb = new StringBuilder();
+//        for(String s: strs)
+//            sb.append(s);
+//        return sb.toString();
+//    }
+    //翻转单词顺序
+
+    public static String reverseWords(String s) {
+        String[] ss = s.trim().split(" ");
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = ss.length-1; i >= 0; i--) {
+            if(ss[i].trim().length() == 0) {
+                continue;
+            }
+
+          stringBuffer.append(ss[i]).append(" ");
+        }
+        return stringBuffer.toString().trim();
+
     }
+
 
 
 
