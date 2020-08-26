@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -168,6 +169,38 @@ public class Solution {
         return arr;
 
     }
+//第一个只出现一次的字符
+    public char firstUniqChar(String s) {
+        char[] ss =s.toCharArray();
+        int j = 0;
+        int counter = 0;
+
+        LinkedHashMap<Character,Integer> hashMap = new LinkedHashMap<>();
+        for (int i = 0; i < ss.length; i++) {
+            if(hashMap.containsKey(ss[i])) {
+                int count = hashMap.get(ss[i]);
+                count = count +1;
+                hashMap.put(ss[i],count);
+            } else {
+                hashMap.put(ss[i],counter);
+            }
+        }
+        ArrayList<Character> arrayList = new ArrayList<>();
+        for (Map.Entry<Character, Integer> entry : hashMap.entrySet()) {
+            if(entry.getValue() == 0) {
+                return entry.getKey();
+            }
+        }
+       return ' ';
+
+
+
+
+    }
+
+
+
+
     //只有一个重复的整数，找出这个重复的整数
 
     public int findDuplicate(int[] nums) {
@@ -313,7 +346,18 @@ public int[] twoSumss(int[] nums, int target) {
         return stringBuffer.toString().trim();
 
     }
+    //左旋抓字符串
+    public String reverseLeftWords(String s, int n) {
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = n; i < s.length(); i++) {
+            stringBuffer.append(s.charAt(i));
+        }
+        for (int i = 0; i <n ; i++) {
+            stringBuffer.append(s.charAt(i));
+        }
+        return stringBuffer.toString();
 
+    }
 
 
 
