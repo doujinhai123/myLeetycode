@@ -3,6 +3,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import static com.iqiyi.paopao.myleetycode.num.Solution.binarySearch;
+import static com.iqiyi.paopao.myleetycode.num.Solution.findContinuousSequence;
 import static com.iqiyi.paopao.myleetycode.num.Solution.majorityElement;
 import static com.iqiyi.paopao.myleetycode.num.Solution.reversePairs;
 import static com.iqiyi.paopao.myleetycode.num.Solution.reverseWords;
@@ -18,5 +19,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         String ssss = "a good      example";
         reverseWords(ssss);
+        findContinuousSequence(5);
     }
 }

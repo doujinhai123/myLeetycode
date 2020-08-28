@@ -358,6 +358,68 @@ public int[] twoSumss(int[] nums, int target) {
         return stringBuffer.toString();
 
     }
+    // 和为S的整数序列
+    public static int[][] findContinuousSequence(int target) {
+        if(target == 2) return null;
+        List<int[]> lists = new ArrayList<>();
+        int min = 1, max = 2;
+        int sum = 3;
+        while(min <= target / 2){
+            if(sum > target){
+                sum -= min;
+                min++;
+            }
+            else{
+                if(sum == target)
+                    lists.add(getOneArray(min, max));
+                max++;
+                sum += max;
+            }
+        }
+        return lists.toArray(new int[0][]);
+    }
+
+    private static int[] getOneArray(int lo, int hi){
+        int[] res = new int[hi - lo + 1];
+        for(int i = lo; i <= hi; i++){
+            res[i - lo] = i;
+        }
+        return res;
+    }
+
+
+    //青蛙跳台阶问题
+    public int numWays(int n) {
+        if(n <=1) {
+            return 1;
+        }
+        int[] dp = new int[n+1];
+        dp[1] = 1;
+        dp[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            dp[i] = dp[i-1] +dp[i-2];
+            dp[i] %= 1000000007;
+        }
+        return dp[n];
+
+    }
+
+    //非博纳数列
+    public int fib(int n) {
+        if(n <=0) {
+            return 0;
+        }
+        int[] dp = new int[n+1];
+        dp[1] = 1;
+        dp[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            dp[i] = dp[i-1] +dp[i-2];
+            dp[i] %= 1000000007;
+        }
+        return dp[n];
+
+    }
+
 
 
 
