@@ -419,6 +419,72 @@ public int[] twoSumss(int[] nums, int target) {
         return dp[n];
 
     }
+    //机器人路径
+    public int uniquePaths(int m, int n) {
+        int[][] dp = new int[m][n];
+        for (int i = 0; i < n ; i++) {
+            dp[0][i] = 1;
+        }
+        for (int i = 0; i < m ; i++) {
+            dp[i][0] = 1;
+        }
+        for (int i = 1; i <m ; i++) {
+            for (int j = 1; j <n ; j++) {
+                dp[i][j] = dp[i-1][j] +dp[i][j-1];
+            }
+        }
+        return dp[m-1][n-1];
+
+    }
+    //旋转数组中的最小值
+    public int findMin(int[] nums) {
+        if(nums.length == 0) {
+            return nums[0];
+        }
+        for (int i = 0; i < nums.length-1; i++) {
+            if(nums[i] > nums [i+1]) {
+                return nums[i+1];
+            }
+        }
+        return  -1;
+    }
+////连续子数组的最大和
+//public int maxSubArray(int[] nums) {
+//
+//}
+   //二维数组的查找
+    public boolean findNumberIn2DArray(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return false;
+        }
+
+        int rows = matrix.length;
+        int column = matrix[0].length;
+        for (int i = 0; i <rows; i++) {
+            for (int j = 0; j < column ; j++) {
+                if(matrix[i][j] == target) {
+                    return true;
+                }
+            }
+
+        }
+        return  false;
+
+    }
+    //替换空格
+    public String replaceSpace(String s) {
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) == ' ') {
+                stringBuffer.append("%20");
+            } else  {
+                stringBuffer.append(s.charAt(i));
+            }
+        }
+        return stringBuffer.toString();
+
+    }
+
 
 
 
