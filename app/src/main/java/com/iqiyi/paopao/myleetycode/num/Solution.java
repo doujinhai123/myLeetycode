@@ -484,8 +484,22 @@ public int[] twoSumss(int[] nums, int target) {
         return stringBuffer.toString();
 
     }
+//二进制中1的个数
+
+    public static int hammingWeight(int n) {
+        String s = Integer.toBinaryString(n);
+        char num[] = s.toCharArray();
+        int res = 0;
+        for(int i : num){
+            if(i == '1')    res++;
+        }
+        return res;
 
 
+    }
+public static void main (String[] args) {
+    hammingWeight(00000000000000000000000010000000);
+}
 
 
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import static com.iqiyi.paopao.myleetycode.num.Solution.binarySearch;
 import static com.iqiyi.paopao.myleetycode.num.Solution.findContinuousSequence;
+import static com.iqiyi.paopao.myleetycode.num.Solution.hammingWeight;
 import static com.iqiyi.paopao.myleetycode.num.Solution.majorityElement;
 import static com.iqiyi.paopao.myleetycode.num.Solution.reversePairs;
 import static com.iqiyi.paopao.myleetycode.num.Solution.reverseWords;
@@ -20,5 +21,6 @@ public class MainActivity extends AppCompatActivity {
         String ssss = "a good      example";
         reverseWords(ssss);
         findContinuousSequence(5);
+        hammingWeight(00000000000000000000000010000000);
     }
 }
