@@ -34,43 +34,54 @@ public class ListNodeResolution {
             System.out.println(result.value);
             result = result.next;
         }
+        ListNode listNode2 = new ListNode(1);
+        listNode2.next = new ListNode(0);
+        listNode2.next.next = new ListNode(1);
+
+        isPalindrome(listNode2);
+
+
     }
 
-    public boolean isPalindrome(ListNode head) {
+    public static boolean isPalindrome(ListNode head) {
+
         if(head == null) {
             return false;
         }
         ListNode slow = head;
         ListNode fast = head;
-        while (fast != null) {
+        while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
+        ListNode halfpast = slow.next;
+        slow.next = null;
+
 
         ListNode pre = null;
-        ListNode now = slow;
-        ListNode faster = slow.next;
+        ListNode now = head;
+        ListNode faster = head.next;
         while (faster != null) {
-            now.next = pre;
+            now.next =  pre;
             pre = now;
-            now = faster;
+            now  =faster;
             faster = faster.next;
         }
         now.next = pre;
 
-        while (now != null && head != null) {
-            if (now.value != head.value) {
-                return false;
+        while (halfpast != null && now != null) {
+            if(halfpast.value != now.value) {
+                return  false;
             } else {
+                halfpast = halfpast.next;
                 now = now.next;
-                head = head.next;
             }
         }
-        if (now == null && head == null) {
+        if(halfpast!= null || now != null) {
+            return false;
+        } else {
             return true;
         }
-        return false;
-
 
     }
 }
