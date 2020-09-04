@@ -1,8 +1,5 @@
 package com.iqiyi.paopao.myleetycode.Linked;
 
-import java.util.List;
-import java.util.Stack;
-
 public class ListNodeResolution {
 
 
@@ -25,20 +22,21 @@ public class ListNodeResolution {
     }
 
     public static void main(String[] args) {
-        ListNode listNode = new ListNode(1);
-        listNode.next = new ListNode(2);
-        listNode.next.next = new ListNode(3);
-        listNode.next.next.next = new ListNode(4);
-        ListNode result = ListNodeResolution.revertList(listNode);
-        while (result != null) {
-            System.out.println(result.value);
-            result = result.next;
-        }
-        ListNode listNode2 = new ListNode(1);
-        listNode2.next = new ListNode(0);
-        listNode2.next.next = new ListNode(1);
-
-        isPalindrome(listNode2);
+        ListNode listNode = new ListNode(4);
+        listNode.next = new ListNode(5);
+        listNode.next.next = new ListNode(1);
+        listNode.next.next.next = new ListNode(9);
+        deleteNode(listNode,5);
+//        ListNode result = ListNodeResolution.revertList(listNode);
+//        while (result != null) {
+//            System.out.println(result.val);
+//            result = result.next;
+//        }
+//        ListNode listNode2 = new ListNode(1);
+//        listNode2.next = new ListNode(0);
+//        listNode2.next.next = new ListNode(1);
+//
+//        isPalindrome(listNode2);
 
 
     }
@@ -70,7 +68,7 @@ public class ListNodeResolution {
         now.next = pre;
 
         while (halfpast != null && now != null) {
-            if(halfpast.value != now.value) {
+            if(halfpast.val != now.val) {
                 return  false;
             } else {
                 halfpast = halfpast.next;
@@ -82,6 +80,54 @@ public class ListNodeResolution {
         } else {
             return true;
         }
+
+    }
+
+    public static ListNode deleteNode(ListNode head, int val) {
+        if(head==null || head.next == null) {
+            return head;
+        }
+        ListNode result = head;
+        ListNode slowRunner = head;
+        ListNode fastRunner = head.next;
+        if(head.val == val) {
+            head = head.next;
+            return head;
+        }
+        while (slowRunner != null && fastRunner != null) {
+            if(fastRunner.val == val) {
+                slowRunner.next = fastRunner.next;
+                break;
+            }else {
+                slowRunner  = slowRunner.next;
+                fastRunner  =fastRunner.next;
+            }
+        }
+        return result;
+
+    }
+    //删除链表的倒数第n个节点
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if( head == null) {
+            return null;
+        }
+
+        ListNode fast = head;
+        ListNode slow = head;
+        while (n != 0) {
+            fast = fast.next;
+            n = n - 1;
+        }
+        while (fast != null && fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        if(fast == null) {
+            return slow.next;
+        }
+        slow.next = slow.next.next;
+        return head;
+
 
     }
 }
