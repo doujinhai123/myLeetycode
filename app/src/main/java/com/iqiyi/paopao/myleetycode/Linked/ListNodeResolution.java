@@ -127,7 +127,28 @@ public class ListNodeResolution {
         }
         slow.next = slow.next.next;
         return head;
-
-
     }
+    //删除链表倒数节点变形
+    //删除链表的倒数第n个节点
+    public ListNode removeNthFromEnd1(ListNode head, int n) {
+        if( head == null) {
+            return null;
+        }
+
+        ListNode fast = head;
+        ListNode slow = head;
+        while (n != 0) {
+            fast = fast.next;
+            n = n - 1;
+        }
+        while (fast != null && fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        if(fast == null) {
+            return slow.next;
+        }
+        return  slow.next;
+    }
+
 }
