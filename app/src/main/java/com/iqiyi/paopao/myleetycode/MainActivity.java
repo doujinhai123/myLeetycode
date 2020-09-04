@@ -2,14 +2,9 @@ package com.iqiyi.paopao.myleetycode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import static com.iqiyi.paopao.myleetycode.num.Solution.binarySearch;
-import static com.iqiyi.paopao.myleetycode.num.Solution.findContinuousSequence;
-import static com.iqiyi.paopao.myleetycode.num.Solution.hammingWeight;
-import static com.iqiyi.paopao.myleetycode.num.Solution.majorityElement;
-import static com.iqiyi.paopao.myleetycode.num.Solution.reversePairs;
-import static com.iqiyi.paopao.myleetycode.num.Solution.reverseWords;
-import static com.iqiyi.paopao.myleetycode.num.Solution.singleNumbers;
-import static com.iqiyi.paopao.myleetycode.num.Solution.twoSum;
+import static com.iqiyi.paopao.myleetycode.num.NumSolution.findContinuousSequence;
+import static com.iqiyi.paopao.myleetycode.num.NumSolution.hammingWeight;
+import static com.iqiyi.paopao.myleetycode.num.NumSolution.reverseWords;
 
 
 public class MainActivity extends AppCompatActivity {

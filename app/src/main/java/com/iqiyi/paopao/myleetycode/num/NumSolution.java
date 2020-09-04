@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class Solution {
+public class NumSolution {
     //无序数组
     public static int[] twoSum(int[] nums, int target) {
        int[] result = new int[2];
