@@ -21,12 +21,40 @@ public class ListNodeResolution {
 
     }
 
+    public int[] reversePrint(ListNode head) {
+        ListNode pre = null;
+        ListNode now = head;
+        ListNode post = head.next;
+        int n = 0;
+        //注意是需要判断到post 不等于空的时候
+        while (post != null) {
+            now.next = pre;
+            pre = now;
+            now = post;
+            post = post.next;
+            n++;
+        }
+        //注意是now的next 辞职post为null
+        now.next = pre;
+        int[] res = new int[n + 1];
+        int i = 0;
+        while (now != null) {
+            res[i] = now.val;
+            i++;
+            now = now.next;
+        }
+
+        return res;
+
+
+    }
+
     public static void main(String[] args) {
         ListNode listNode = new ListNode(4);
         listNode.next = new ListNode(5);
         listNode.next.next = new ListNode(1);
         listNode.next.next.next = new ListNode(9);
-        deleteNode(listNode,5);
+        deleteNode(listNode, 5);
 //        ListNode result = ListNodeResolution.revertList(listNode);
 //        while (result != null) {
 //            System.out.println(result.val);
@@ -43,7 +71,7 @@ public class ListNodeResolution {
 
     public static boolean isPalindrome(ListNode head) {
 
-        if(head == null) {
+        if (head == null) {
             return false;
         }
         ListNode slow = head;
@@ -60,22 +88,22 @@ public class ListNodeResolution {
         ListNode now = head;
         ListNode faster = head.next;
         while (faster != null) {
-            now.next =  pre;
+            now.next = pre;
             pre = now;
-            now  =faster;
+            now = faster;
             faster = faster.next;
         }
         now.next = pre;
 
         while (halfpast != null && now != null) {
-            if(halfpast.val != now.val) {
-                return  false;
+            if (halfpast.val != now.val) {
+                return false;
             } else {
                 halfpast = halfpast.next;
                 now = now.next;
             }
         }
-        if(halfpast!= null || now != null) {
+        if (halfpast != null || now != null) {
             return false;
         } else {
             return true;
@@ -84,31 +112,32 @@ public class ListNodeResolution {
     }
 
     public static ListNode deleteNode(ListNode head, int val) {
-        if(head==null || head.next == null) {
+        if (head == null || head.next == null) {
             return head;
         }
         ListNode result = head;
         ListNode slowRunner = head;
         ListNode fastRunner = head.next;
-        if(head.val == val) {
+        if (head.val == val) {
             head = head.next;
             return head;
         }
         while (slowRunner != null && fastRunner != null) {
-            if(fastRunner.val == val) {
+            if (fastRunner.val == val) {
                 slowRunner.next = fastRunner.next;
                 break;
-            }else {
-                slowRunner  = slowRunner.next;
-                fastRunner  =fastRunner.next;
+            } else {
+                slowRunner = slowRunner.next;
+                fastRunner = fastRunner.next;
             }
         }
         return result;
 
     }
+
     //删除链表的倒数第n个节点
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        if( head == null) {
+        if (head == null) {
             return null;
         }
 
@@ -122,16 +151,17 @@ public class ListNodeResolution {
             fast = fast.next;
             slow = slow.next;
         }
-        if(fast == null) {
+        if (fast == null) {
             return slow.next;
         }
         slow.next = slow.next.next;
         return head;
     }
+
     //删除链表倒数节点变形
     //删除链表的倒数第n个节点
     public ListNode removeNthFromEnd1(ListNode head, int n) {
-        if( head == null) {
+        if (head == null) {
             return null;
         }
 
@@ -145,10 +175,10 @@ public class ListNodeResolution {
             fast = fast.next;
             slow = slow.next;
         }
-        if(fast == null) {
+        if (fast == null) {
             return slow.next;
         }
-        return  slow.next;
+        return slow.next;
     }
 
 }
