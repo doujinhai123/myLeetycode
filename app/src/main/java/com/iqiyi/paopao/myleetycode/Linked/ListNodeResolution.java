@@ -71,44 +71,39 @@ public class ListNodeResolution {
 
     public static boolean isPalindrome(ListNode head) {
 
-        if (head == null) {
-            return false;
-        }
-        ListNode slow = head;
-        ListNode fast = head;
-        while (fast.next != null && fast.next.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        ListNode halfpast = slow.next;
-        slow.next = null;
-
-
-        ListNode pre = null;
-        ListNode now = head;
-        ListNode faster = head.next;
-        while (faster != null) {
-            now.next = pre;
-            pre = now;
-            now = faster;
-            faster = faster.next;
-        }
-        now.next = pre;
-
-        while (halfpast != null && now != null) {
-            if (halfpast.val != now.val) {
-                return false;
-            } else {
-                halfpast = halfpast.next;
-                now = now.next;
-            }
-        }
-        if (halfpast != null || now != null) {
-            return false;
-        } else {
+        //边界条件不用忘记了
+        if(head==null || head.next==null) {
             return true;
         }
-
+        ListNode p = new ListNode(-1);
+        ListNode low = p;
+        ListNode fast = p;
+        p.next = head;
+        //快慢指针不断迭代，找到中间节点
+        while(fast!=null && fast.next!=null) {
+            low = low.next;
+            fast = fast.next.next;
+        }
+        ListNode cur = low.next;
+        ListNode pre = null;
+        low.next = null;
+        low = p.next;
+        //将链表一分为二之后，反转链表后半部分
+        while(cur!=null) {
+            ListNode tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
+        }
+        //将链表前半部分和 反转的后半部分对比
+        while(pre!=null) {
+            if(low.val!=pre.val) {
+                return false;
+            }
+            low = low.next;
+            pre = pre.next;
+        }
+        return true;
     }
 
     public static ListNode deleteNode(ListNode head, int val) {
@@ -179,6 +174,25 @@ public class ListNodeResolution {
             return slow.next;
         }
         return slow.next;
+    }
+//删除链表中的重复元素
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head == null || head.next == null) {
+            return null;
+        }
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (fast != null && fast.next != null) {
+            if(fast.val == slow.val) {
+                fast = fast.next;
+            } else {
+                slow.next = fast;
+                slow = slow.next;
+                fast = fast.next;
+            }
+        }
+        return head;
+
     }
 
 }
