@@ -184,14 +184,24 @@ public class ListNodeResolution {
         ListNode fast = head.next;
         while (fast != null && fast.next != null) {
             if(fast.val == slow.val) {
-                fast = fast.next;
             } else {
                 slow.next = fast;
-                slow = slow.next;
-                fast = fast.next;
+              slow = fast;
             }
+            fast = fast.next;
         }
         return head;
+
+    }
+
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode node1 = headA;
+        ListNode node2 = headB;
+        while (node1 != node2) {
+            node1 = node1==null?node1 = headB:node1.next;
+            node2 = node2==null?node2 = headA:node2.next;
+        }
+        return node1;
 
     }
 
