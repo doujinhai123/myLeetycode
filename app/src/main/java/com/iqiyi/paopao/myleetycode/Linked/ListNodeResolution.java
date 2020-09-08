@@ -202,7 +202,24 @@ public class ListNodeResolution {
             node2 = node2==null?node2 = headA:node2.next;
         }
         return node1;
+    }
+//删除重复节点使得每个节点只出现一次
+    public ListNode deleteDuplicatess(ListNode head) {
+        if(head == null) {
+            return null;
+        }
+        ListNode runner = head;
+        while (runner != null && runner.next != null) {
+            if(runner.val == runner.next.val) {
+                runner.next = runner.next.next;
+            } else {
+                runner = runner.next;
+            }
+
+        }
+        return head;
 
     }
+
 
 }
