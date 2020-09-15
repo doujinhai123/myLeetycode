@@ -52,30 +52,36 @@ class Solution {
 
     }
     //二叉树的层序遍历
-    public void levelOrder(TreeNode root) {
-        ArrayList arrayList = new ArrayList();
+    public int[] levelOrder(TreeNode root) {
+        ArrayList<Integer> arrayList = new ArrayList();
         if(root == null) {
-            return ;
+            return new int[0];
         }
-
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        arrayList.add(root);
-        while (queue.poll() != null)  {
-            TreeNode treeNode = queue.poll();
-            arrayList.add(treeNode);
-            if(treeNode != null && treeNode.left != null) {
-                queue.add(treeNode.left);
-                arrayList.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            arrayList.add(node.val);
+            if(node.left != null) {
+                queue.add(node.left);
             }
-            if(treeNode != null && treeNode.right != null) {
-                queue.add(treeNode.right);
-                arrayList.add(root);
+            if(node.right != null) {
+                queue.add(node.right);
             }
 
         }
+        int[] reslt = new int[arrayList.size()];
 
-        return arrayList;
+        for (int i = 0; i <arrayList.size() ; i++) {
+            reslt[i] = arrayList.get(i);
+        }
+        return reslt;
+
+
+
+
+
+
 
     }
 
