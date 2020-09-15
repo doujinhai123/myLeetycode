@@ -220,6 +220,27 @@ public class ListNodeResolution {
         return head;
 
     }
+    //删除链表中指定的所有的重复元素
+    public ListNode removeElements(ListNode head, int val) {
+        if (head == null ) {
+            return null;
+        }
+        ListNode newheader = new ListNode(-1);
+        newheader.next = head;
+        ListNode preheader = newheader;
+        ListNode curheader = head;
+        while (curheader != null) {
+            if(curheader.val == val) {
+                preheader.next = curheader.next;
+                curheader = curheader.next;
+            } else  {
+                preheader = curheader;
+                curheader = curheader.next;
+            }
+
+        }
+        return newheader.next;
+    }
 
 
 }
