@@ -11,14 +11,14 @@ import java.util.Stack;
 class Solution {
    ArrayList arrayList = new ArrayList();
    public static void main(String[] args) {
-       TreeNode treeNode = new TreeNode(0);
-       treeNode.left = new TreeNode(1);
-       treeNode.right = new TreeNode(2);
+       TreeNode treeNode = new TreeNode(3);
+       treeNode.left = new TreeNode(9);
+       treeNode.right = new TreeNode(20);
        treeNode.left.left = null;
        treeNode.left.right = null;
-       treeNode.right.left = new TreeNode(3);
-       treeNode.right.right = new TreeNode(4);
-       levelOrderwwzhi(treeNode);
+       treeNode.right.left = new TreeNode(15);
+       treeNode.right.right = new TreeNode(7);
+       levelOrderwwzhilist(treeNode);
 
    }
    //二叉树的前学
@@ -118,10 +118,10 @@ class Solution {
             while (!stack1.isEmpty()) {
                 TreeNode treeNode = stack1.pop();
                 System.out.println(treeNode.val);
-                if(treeNode.right != null) {
+                if(treeNode.left != null) {
                     stack2.push(treeNode.left);
                 }
-                if(treeNode.left != null) {
+                if(treeNode.right!= null) {
                     stack2.push(treeNode.right);
                 }
             }
@@ -136,6 +136,49 @@ class Solution {
                 }
             }
         }
+
+    }
+
+    //二叉树的之字形打印
+    public static List<List<Integer>> levelOrderwwzhilist(TreeNode root) {
+        List<List<Integer>> lists = new LinkedList<>();
+
+        Stack<TreeNode> stack1  = new Stack<>();
+        stack1.add(root);
+        Stack<TreeNode> stack2 = new Stack<>();
+        while (!stack1.isEmpty() || !stack2.isEmpty()) {
+            List<Integer> allist = new LinkedList<>();
+            while (!stack1.isEmpty()) {
+                TreeNode val = stack1.pop();
+                allist.add(val.val);
+                if(val.left != null) {
+                    stack2.push(val.left);
+                }
+                if(val.right != null) {
+                    stack2.push(val.right);
+                }
+            }
+            if(allist.size() > 0) {
+                lists.add(allist);
+            }
+            List<Integer> bllist = new LinkedList<>();
+            while (!stack2.isEmpty()) {
+                TreeNode val = stack2.pop();
+                bllist.add(val.val);
+                if(val.right != null) {
+                    stack1.push(val.right);
+                }
+                if(val.left != null) {
+                    stack1.push(val.left);
+                }
+            }
+            if(bllist.size() > 0) {
+                lists.add(bllist);
+            }
+
+
+        }
+        return lists;
 
     }
 
