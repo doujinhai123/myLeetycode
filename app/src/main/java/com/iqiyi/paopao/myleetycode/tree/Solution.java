@@ -181,7 +181,16 @@ class Solution {
         return lists;
 
     }
+    //二叉树的深度
+    public int maxDepth(TreeNode root) {
+       if(root == null) {
+           return 0;
+       }
+       int leftdepth = maxDepth(root.left) +1;
+       int rightdepth = maxDepth(root.right) + 1;
+       return leftdepth > rightdepth? leftdepth:rightdepth;
 
+    }
 
 
 }
