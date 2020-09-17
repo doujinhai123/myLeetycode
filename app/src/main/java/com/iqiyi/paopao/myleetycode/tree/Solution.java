@@ -191,6 +191,27 @@ class Solution {
        return leftdepth > rightdepth? leftdepth:rightdepth;
 
     }
+    //二叉树深度非递归
+    public int maxDepthss(TreeNode root) {
+       Queue<TreeNode> queue = new LinkedList<>();
+       queue.add(root);
+       int n = 0;
+       while (!queue.isEmpty()) {
+           int size = queue.size();
+           for (int i = 0; i < size; i++) {
+               TreeNode node = queue.poll();
+               System.out.println(node.val);
+               if(node.left != null) {
+                   queue.add(node.left);
+               }
+               if(node.right != null) {
+                   queue.add(node.right);
+               }
+           }
+           n = n + 1;
+       }
+       return n;
+    }
 
 
 }
