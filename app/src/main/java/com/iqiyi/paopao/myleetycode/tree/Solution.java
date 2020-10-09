@@ -31,6 +31,19 @@ class Solution {
         preorderTraversal(root.right);
         return arrayList;
     }
+
+    //二叉树的前序非递归
+    public List<Integer> preorderTraversal(TreeNode root) {
+       ArrayList<Integer> arrayList = new ArrayList<>();
+
+        if(root == null) {
+            return arrayList;
+        }
+        arrayList.add(root.val);
+        preorderTraversal(root.left);
+        preorderTraversal(root.right);
+        return arrayList;
+    }
     //二叉树的中序遍历
     public List<Integer> inorderTraversal(TreeNode root) {
         if(root == null) {
@@ -212,6 +225,10 @@ class Solution {
        }
        return n;
     }
+//    //二叉树的最近公共祖先
+//    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+//
+//    }
 
 
 }
