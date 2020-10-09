@@ -1,10 +1,11 @@
-package com.iqiyi.paopao.myleetycode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import static com.iqiyi.paopao.myleetycode.num.NumSolution.findContinuousSequence;
-import static com.iqiyi.paopao.myleetycode.num.NumSolution.hammingWeight;
-import static com.iqiyi.paopao.myleetycode.num.NumSolution.reverseWords;
+import com.iqiyi.paopao.myleetycode.R;
+
+import static num.NumSolution.findContinuousSequence;
+import static num.NumSolution.hammingWeight;
+import static num.NumSolution.reverseWords;
 
 
 public class MainActivity extends AppCompatActivity {

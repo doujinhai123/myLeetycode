@@ -1,6 +1,4 @@
-package com.iqiyi.paopao.myleetycode.num;
-
-import android.util.Log;
+package num;
 
 import static java.util.Arrays.sort;
 

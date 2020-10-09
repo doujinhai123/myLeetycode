@@ -1,6 +1,4 @@
-package com.iqiyi.paopao.myleetycode.tree;
-
-import com.iqiyi.paopao.myleetycode.Linked.ListNode;
+package tree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -33,7 +31,7 @@ class Solution {
     }
 
     //二叉树的前序非递归
-    public List<Integer> preorderTraversal(TreeNode root) {
+    public List<Integer> preorder22Traversal(TreeNode root) {
        ArrayList<Integer> arrayList = new ArrayList<>();
 
         if(root == null) {

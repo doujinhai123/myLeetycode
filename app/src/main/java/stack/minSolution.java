@@ -1,4 +1,4 @@
-package com.iqiyi.paopao.myleetycode.stack;
+package stack;
 
 import java.util.Stack;
 

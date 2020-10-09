@@ -1,4 +1,4 @@
-package com.iqiyi.paopao.myleetycode.Linked;
+package Linked;
 
 public class ListNodeResolution {
 
