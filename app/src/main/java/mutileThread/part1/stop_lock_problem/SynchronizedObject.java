@@ -28,10 +28,10 @@ public class SynchronizedObject {
         this.password = password;
     }
 
-    synchronized public void printString(String username, String password) {
+     public void printString(String username, String password) {
         try {
             this.username = username;
-            Thread.sleep(100000);
+            Thread.sleep(1000);
             this.password = password;
         } catch (InterruptedException e) {
             e.printStackTrace();

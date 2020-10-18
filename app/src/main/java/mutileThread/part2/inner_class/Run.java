@@ -1,6 +1,6 @@
 package mutileThread.part2.inner_class;
 
-import io.ilss.part2.inner_class.PublicClass.PrivateClass;
+
 /**
  * className Run
  * description
@@ -15,7 +15,7 @@ public class Run {
         publicClass.setUsername("usernameValue");
         publicClass.setPassword("passwordValue");
         System.out.println(publicClass.getUsername() + " " + publicClass.getPassword());
-        PrivateClass privateClass = publicClass.new PrivateClass();
+        PublicClass.PrivateClass privateClass = publicClass.new PrivateClass();
         privateClass.setAge("ageValue");
         privateClass.setAddress("addressValue");
         System.out.println(privateClass.getAge() + " " + privateClass.getAddress());

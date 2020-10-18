@@ -1,7 +1,5 @@
 package mutileThread.part3.p_r_test;
 
-import io.ilss.part3.notify_one.ThreadC;
-
 /**
  * className ThreadCu
  * description

@@ -19,7 +19,7 @@ public class MyThread extends Thread {
     //}
 
     @Override
-    synchronized public void run() {
+     public void run() {
         super.run();
         count--;
         System.out.println("由" + Thread.currentThread().getName() + "计算,count=" + count);
