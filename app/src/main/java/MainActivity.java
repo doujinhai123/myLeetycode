@@ -3,10 +3,6 @@ import android.os.Bundle;
 
 import com.iqiyi.paopao.myleetycode.R;
 
-import static num.NumSolution.findContinuousSequence;
-import static num.NumSolution.hammingWeight;
-import static num.NumSolution.reverseWords;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,9 +10,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String ssss = "a good      example";
-        reverseWords(ssss);
-        findContinuousSequence(5);
-        hammingWeight(00000000000000000000000010000000);
+
     }
 }
