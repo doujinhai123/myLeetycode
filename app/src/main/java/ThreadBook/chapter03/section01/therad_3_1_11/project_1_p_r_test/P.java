@@ -20,7 +20,7 @@ public class P {
 						+ System.nanoTime();
 				System.out.println("set的值是" + value);
 				ValueObject.value = value;
-				lock.notify();
+				lock.notifyAll();
 			}
 
 		} catch (InterruptedException e) {

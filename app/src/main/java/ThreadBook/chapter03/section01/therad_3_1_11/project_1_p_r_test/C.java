@@ -18,7 +18,7 @@ public class C {
 				}
 				System.out.println("get的值是" + ValueObject.value);
 				ValueObject.value = "";
-				lock.notify();
+				lock.notifyAll();
 			}
 
 		} catch (InterruptedException e) {

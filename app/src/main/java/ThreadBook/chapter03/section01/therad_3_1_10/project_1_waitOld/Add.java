@@ -13,6 +13,7 @@ public class Add {
 		synchronized (lock) {
 			ValueObject.list.add("anyString");
 			lock.notifyAll();
+			System.out.println("执行了notify all  list size=" + ValueObject.list.size());
 		}
 	}
 	

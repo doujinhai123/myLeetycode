@@ -11,15 +11,14 @@ public class NotifyThread extends Thread {
 	@Override
 	public void run() {
 		synchronized (lock) {
-			lock.notify();
-			lock.notify();
-			lock.notify();
-			lock.notify();
-			lock.notify();
-			lock.notify();
-			lock.notify();
-			lock.notify();
-			lock.notify();
+			lock.notifyAll();
+//			lock.notify();
+//			lock.notify();
+//			lock.notify();
+//			lock.notify();
+//			lock.notify();
+//			lock.notify();
+//			lock.notify();
 		}
 	}
 

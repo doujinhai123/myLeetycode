@@ -39,13 +39,14 @@ public class MyRun {
 
 		MyRun run = new MyRun();
 
-		Thread a = new Thread(run.runnableA);
-		a.start();
-
-		Thread.sleep(100);
 
 		Thread b = new Thread(run.runnableB);
 		b.start();
+
+		Thread.sleep(100);
+		Thread a = new Thread(run.runnableA);
+		a.start();
+
 
 	}
 
