@@ -17,12 +17,6 @@ public class Run {
 		P_Thread pThread4 = new P_Thread(p4);
 		P_Thread pThread5 = new P_Thread(p5);
 		P_Thread pThread6 = new P_Thread(p6);
-		pThread1.start();
-		pThread2.start();
-		pThread3.start();
-		pThread4.start();
-		pThread5.start();
-		pThread6.start();
 
 		C r1 = new C(myStack);
 		C r2 = new C(myStack);
@@ -41,15 +35,27 @@ public class Run {
 		C_Thread cThread6 = new C_Thread(r6);
 		C_Thread cThread7 = new C_Thread(r7);
 		C_Thread cThread8 = new C_Thread(r8);
-
+		pThread1.start();
 		cThread1.start();
+		pThread2.start();
 		cThread2.start();
+		pThread3.start();
 		cThread3.start();
+		pThread4.start();
 		cThread4.start();
+		pThread5.start();
 		cThread5.start();
+		pThread6.start();
 		cThread6.start();
 		cThread7.start();
 		cThread8.start();
+
+
+
+
+
+
+
 
 	}
 

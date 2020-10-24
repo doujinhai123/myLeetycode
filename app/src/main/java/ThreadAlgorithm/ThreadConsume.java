@@ -6,6 +6,7 @@ import java.util.Queue;
 
 class ThreadConsume extends Thread {
     Queue mArrayList = new LinkedList();
+
     public ThreadConsume(Queue<Integer> arrayList) {
         mArrayList = arrayList;
     }
@@ -13,28 +14,34 @@ class ThreadConsume extends Thread {
     @Override
     public void run() {
         super.run();
-        synchronized (mArrayList) {
-            while (true) {
+
+        while (true) {
+            synchronized (mArrayList) {
                 while (mArrayList.size() == 0) {
                     try {
-                        System.out.println("都消费完毕了，需要wait");
-                        mArrayList.notifyAll();
+                        System.out.println("都消费完毕了 进入wait" + Thread.currentThread().getName());
                         mArrayList.wait();
-                        System.out.println("又有啦，继续消费，需要wait");
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(300);
                 } catch (InterruptedException e) {
 
                 }
                 mArrayList.poll();
-                System.out.println("消费啦，剩余的个数为"+mArrayList.size());
+                System.out.println("消费啦，剩余的个数为" + mArrayList.size()+"---"+ Thread.currentThread().getName());
+                mArrayList.notifyAll();
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
 
-
         }
+
     }
 }

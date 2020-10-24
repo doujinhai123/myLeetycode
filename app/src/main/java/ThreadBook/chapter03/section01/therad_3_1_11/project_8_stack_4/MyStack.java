@@ -8,12 +8,17 @@ public class MyStack {
 
 	synchronized public void push() {
 		try {
-			while (list.size() == 1) {
+			while (list.size() == 5) {
+				System.out.println("ppush操作中的："
+						+ Thread.currentThread().getName() + " 线程呈wait状态");
 				this.wait();
+
 			}
 			list.add("anyString=" + Math.random());
 			this.notifyAll();
-			System.out.println("push=" + list.size());
+			System.out.println("push=" + list.size() + "---"+Thread.currentThread().getName());
+		;
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -30,7 +35,8 @@ public class MyStack {
 			returnValue = "" + list.get(0);
 			list.remove(0);
 			this.notifyAll();
-			System.out.println("pop=" + list.size());
+			System.out.println("pop=---" + list.size()+ "---------"+Thread.currentThread().getName());
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

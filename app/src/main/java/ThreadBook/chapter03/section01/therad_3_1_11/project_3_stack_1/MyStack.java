@@ -9,9 +9,14 @@ public class MyStack {
 	synchronized public void push() {
 		try {
 			if (list.size() == 1) {
+				System.out.println("push操作中的："
+						+ Thread.currentThread().getName() + " 线程呈wait状态");
 				this.wait();
 			}
+			System.out.println("push 活了");
 			list.add("anyString=" + Math.random());
+			System.out.println("push操作中的："
+					+ Thread.currentThread().getName() + " 线程呈运行状态");
 			this.notify();
 			System.out.println("push=" + list.size());
 		} catch (InterruptedException e) {
@@ -27,6 +32,8 @@ public class MyStack {
 						+ Thread.currentThread().getName() + " 线程呈wait状态");
 				this.wait();
 			}
+			System.out.println("pop操作中的："
+					+ Thread.currentThread().getName() + " 线程呈运行状态");
 			returnValue = "" + list.get(0);
 			list.remove(0);
 			this.notify();

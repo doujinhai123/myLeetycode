@@ -11,5 +11,10 @@ public class P {
 
 	public void pushService() {
 		myStack.push();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
