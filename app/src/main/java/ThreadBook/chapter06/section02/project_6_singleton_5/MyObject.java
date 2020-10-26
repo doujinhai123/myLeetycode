@@ -14,11 +14,14 @@ public class MyObject {
 		try {
 			if (myObject != null) {
 			} else {
-				// 模拟在创建对象之前做一些准备性的工作
-				Thread.sleep(3000);
+				// 模拟在创建对象之前做一些准备性的工
+				System.out.println("进入了等于null的判断条件"+Thread.currentThread().getName());
 				synchronized (MyObject.class) {
+					System.out.println("开始生成了的新的实例"+Thread.currentThread().getName());
 					if (myObject == null) {
+						Thread.sleep(3000);
 						myObject = new MyObject();
+						System.out.println("结束生成了的新的实例"+Thread.currentThread().getName());
 					}
 				}
 			}

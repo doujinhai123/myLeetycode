@@ -80,10 +80,10 @@ public class Run {
 			aArray[i] = new Thread(threadA);
 			bArray[i] = new Thread(threadB);
 			cArray[i] = new Thread(threadC);
-
-			aArray[i].start();
 			bArray[i].start();
 			cArray[i].start();
+			aArray[i].start();
+
 		}
 
 	}

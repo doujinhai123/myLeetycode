@@ -14,6 +14,7 @@ public class MyService {
 			lock.lock();
 			System.out.println(" await时间为" + System.currentTimeMillis());
 			condition.await();
+			System.out.println(" await时111111间为" + System.currentTimeMillis());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {

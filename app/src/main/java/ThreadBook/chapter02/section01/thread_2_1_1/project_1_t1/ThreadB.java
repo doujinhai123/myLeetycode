@@ -11,6 +11,9 @@ public class ThreadB extends Thread {
 
 	@Override
 	public void run() {
+
+
+
 		super.run();
 		numRef.addI("b");
 	}
