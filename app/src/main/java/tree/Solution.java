@@ -10,14 +10,15 @@ class Solution {
     ArrayList arrayList = new ArrayList();
 
     public static void main(String[] args) {
-        TreeNode treeNode = new TreeNode(3);
-        treeNode.left = new TreeNode(9);
-        treeNode.right = new TreeNode(20);
-        treeNode.left.left = null;
-        treeNode.left.right = null;
-        treeNode.right.left = new TreeNode(15);
-        treeNode.right.right = new TreeNode(7);
-        levelOrderwwzhilist(treeNode);
+        TreeNode treeNode = new TreeNode(4);
+        treeNode.left = new TreeNode(2);
+        treeNode.right = new TreeNode(7);
+        treeNode.left.left = new TreeNode(1);
+        treeNode.left.right = new TreeNode(3);;
+        treeNode.right.left = new TreeNode(6);
+        treeNode.right.right = new TreeNode(9);
+        mirrorTree(treeNode);
+        levelOrderwwvoid(treeNode);
 
     }
 
@@ -120,6 +121,23 @@ class Solution {
             result.add(list);
         }
         return result;
+
+    }
+    //二叉树的层序
+    //二叉树的层序遍历
+    public static void levelOrderwwvoid(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            System.out.println(node.val);
+            if(node.left != null) {
+                queue.add(node.left);
+            }
+            if(node.right != null) {
+                queue.add(node.right);
+            }
+        }
 
     }
 
@@ -232,22 +250,45 @@ class Solution {
 
     //是否为对称二叉树
     public boolean isSymmetric(TreeNode root) {
-        if(root ==null) {
+        if (root == null) {
             return true;
         }
-        return isLeftEqualRight(root.left,root.right);
+        return isLeftEqualRight(root.left, root.right);
 
     }
 
-    public boolean isLeftEqualRight(TreeNode leftNode,TreeNode rightNode) {
-        if(leftNode == null && rightNode ==null) {
+    public boolean isLeftEqualRight(TreeNode leftNode, TreeNode rightNode) {
+        if (leftNode == null && rightNode == null) {
             return true;
         }
-        if(leftNode==null||rightNode ==null || leftNode.val != rightNode.val) {
-            return  false;
+        if (leftNode == null || rightNode == null || leftNode.val != rightNode.val) {
+            return false;
         }
 
-       return isLeftEqualRight(leftNode.left,rightNode.right) &&  isLeftEqualRight(leftNode.right,rightNode.left);
+        return isLeftEqualRight(leftNode.left, rightNode.right) && isLeftEqualRight(leftNode.right, rightNode.left);
     }
+
+    //输入二叉树的镜像
+    public static TreeNode mirrorTree(TreeNode root) {
+        if(root == null) {
+            return null;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            TreeNode temp = node.left;
+            node.left = node.right;
+            node.right = temp;
+            if(node.left != null) {
+                queue.add(node.left);
+            }
+            if(node.right != null) {
+                queue.add(node.right);
+            }
+        }
+        return root;
+    };
+
 
 }
