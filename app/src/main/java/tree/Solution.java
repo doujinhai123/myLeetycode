@@ -320,6 +320,36 @@ class Solution {
         }
         return root;
     };
+    //判断是否为平衡二叉树
+    public boolean IsBalanced_Solution(TreeNode root) {
+        if (root==null) {
+            return true;
+        }
+
+        int leftlENGTH = getlength(root.left);
+        int rightLength = getlength(root.right);
+        if(Math.abs(leftlENGTH -rightLength) >1) {
+            return false;
+        } else {
+            return   IsBalanced_Solution(root.left) &&IsBalanced_Solution(root.right);
+        }
+
+    }
+    private int getlength(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = getlength(root.left) + 1;
+        int right = getlength(root.right) +1;
+        if(left >right) {
+            return left;
+        } else  {
+            return right;
+        }
+
+    }
+
+
 
 
 }
