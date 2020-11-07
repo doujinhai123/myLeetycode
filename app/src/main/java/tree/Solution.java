@@ -69,6 +69,48 @@ class Solution {
 
     }
 
+    //二叉树的后序非递归 根左右  变为根右左  在变为左右跟
+    public List<Integer> lastTraversalfeidigui(TreeNode root) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        Stack<TreeNode> stackresult = new Stack<>();
+        while (!stack.isEmpty()) {
+            TreeNode treeNode = stack.pop();
+            stackresult.push(treeNode);
+            if (treeNode.right != null) {
+                stack.push(treeNode.left);
+            }
+            if (treeNode.left != null) {
+                stack.push(treeNode.right);
+            }
+
+        }
+        while (!stackresult.isEmpty()) {
+            arrayList.add(stackresult.pop().val);
+        }
+        return arrayList;
+
+    }
+
+    //二叉树的中序非递归遍历
+    public List<Integer> midllefeidigui(TreeNode root) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            arrayList.add(root.val);
+            root = root.right;
+        }
+        return arrayList;
+
+    }
+
     //二叉树的中序遍历
     public List<Integer> inorderTraversal(TreeNode root) {
         if (root == null) {
@@ -381,8 +423,14 @@ class Solution {
 
     //二叉搜索的第K大的节点
     public int kthLargest(TreeNode root, int k) {
+        if(root ==null) {
+            return 0;
+        }
+       ArrayList<Integer> arrayList = (ArrayList) midllefeidigui(root);
 
-    }
+        return arrayList.get(arrayList.size()-1);
+
+    };
 
 
 }
