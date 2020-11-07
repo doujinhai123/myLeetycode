@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
+import ClassInit.Sta;
+
 class Solution {
     ArrayList arrayList = new ArrayList();
 
@@ -14,7 +16,8 @@ class Solution {
         treeNode.left = new TreeNode(2);
         treeNode.right = new TreeNode(7);
         treeNode.left.left = new TreeNode(1);
-        treeNode.left.right = new TreeNode(3);;
+        treeNode.left.right = new TreeNode(3);
+        ;
         treeNode.right.left = new TreeNode(6);
         treeNode.right.right = new TreeNode(9);
         mirrorTree(treeNode);
@@ -33,7 +36,7 @@ class Solution {
         return arrayList;
     }
 
-    //二叉树的前序非递归
+    //二叉树的前序递归
     public List<Integer> preorder22Traversal(TreeNode root) {
         ArrayList<Integer> arrayList = new ArrayList<>();
 
@@ -46,14 +49,35 @@ class Solution {
         return arrayList;
     }
 
+    //二叉树的前序非递归
+    public List<Integer> preorderTraversalfeidigui(TreeNode root) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode treeNode = stack.pop();
+            arrayList.add(treeNode.val);
+            if (treeNode.right != null) {
+                stack.push(treeNode.right);
+            }
+            if (treeNode.left != null) {
+                stack.push(treeNode.left);
+            }
+
+        }
+        return arrayList;
+
+    }
+
     //二叉树的中序遍历
     public List<Integer> inorderTraversal(TreeNode root) {
         if (root == null) {
             return arrayList;
         }
         inorderTraversal(root.left);
-        inorderTraversal(root.right);
         arrayList.add(root.val);
+        inorderTraversal(root.right);
+
         return arrayList;
 
     }
@@ -123,6 +147,7 @@ class Solution {
         return result;
 
     }
+
     //二叉树的层序
     //二叉树的层序遍历
     public static void levelOrderwwvoid(TreeNode root) {
@@ -131,10 +156,10 @@ class Solution {
         while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
             System.out.println(node.val);
-            if(node.left != null) {
+            if (node.left != null) {
                 queue.add(node.left);
             }
-            if(node.right != null) {
+            if (node.right != null) {
                 queue.add(node.right);
             }
         }
@@ -267,10 +292,11 @@ class Solution {
 
         return isLeftEqualRight(leftNode.left, rightNode.right) && isLeftEqualRight(leftNode.right, rightNode.left);
     }
+
     //是否为对称二叉树非递归
     //是否为对称二叉树aa
     public boolean isSymmetricaa(TreeNode root) {
-        if(root == null ||(root.left == null && root.right == null)) {
+        if (root == null || (root.left == null && root.right == null)) {
             return true;
         }
 
@@ -279,14 +305,14 @@ class Solution {
         queue.add(root.right);
         while (!queue.isEmpty()) {
             TreeNode left = queue.poll();
-            TreeNode right =queue.poll();
-            if(left == null && right ==null) {
+            TreeNode right = queue.poll();
+            if (left == null && right == null) {
                 continue;
             }
-            if(right ==null || left ==null) {
+            if (right == null || left == null) {
                 return false;
             }
-            if(left.val != right.val) {
+            if (left.val != right.val) {
                 return false;
             }
             queue.add(left.left);
@@ -301,7 +327,7 @@ class Solution {
 
     //输入二叉树的镜像
     public static TreeNode mirrorTree(TreeNode root) {
-        if(root == null) {
+        if (root == null) {
             return null;
         }
         Queue<TreeNode> queue = new LinkedList<>();
@@ -311,45 +337,52 @@ class Solution {
             TreeNode temp = node.left;
             node.left = node.right;
             node.right = temp;
-            if(node.left != null) {
+            if (node.left != null) {
                 queue.add(node.left);
             }
-            if(node.right != null) {
+            if (node.right != null) {
                 queue.add(node.right);
             }
         }
         return root;
-    };
+    }
+
+    ;
+
     //判断是否为平衡二叉树
     public boolean IsBalanced_Solution(TreeNode root) {
-        if (root==null) {
+        if (root == null) {
             return true;
         }
 
         int leftlENGTH = getlength(root.left);
         int rightLength = getlength(root.right);
-        if(Math.abs(leftlENGTH -rightLength) >1) {
+        if (Math.abs(leftlENGTH - rightLength) > 1) {
             return false;
         } else {
-            return   IsBalanced_Solution(root.left) &&IsBalanced_Solution(root.right);
+            return IsBalanced_Solution(root.left) && IsBalanced_Solution(root.right);
         }
 
     }
+
     private int getlength(TreeNode root) {
         if (root == null) {
             return 0;
         }
         int left = getlength(root.left) + 1;
-        int right = getlength(root.right) +1;
-        if(left >right) {
+        int right = getlength(root.right) + 1;
+        if (left > right) {
             return left;
-        } else  {
+        } else {
             return right;
         }
 
     }
 
+    //二叉搜索的第K大的节点
+    public int kthLargest(TreeNode root, int k) {
 
+    }
 
 
 }
