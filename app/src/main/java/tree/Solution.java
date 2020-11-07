@@ -267,6 +267,37 @@ class Solution {
 
         return isLeftEqualRight(leftNode.left, rightNode.right) && isLeftEqualRight(leftNode.right, rightNode.left);
     }
+    //是否为对称二叉树非递归
+    //是否为对称二叉树aa
+    public boolean isSymmetricaa(TreeNode root) {
+        if(root == null ||(root.left == null && root.right == null)) {
+            return true;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root.left);
+        queue.add(root.right);
+        while (!queue.isEmpty()) {
+            TreeNode left = queue.poll();
+            TreeNode right =queue.poll();
+            if(left == null && right ==null) {
+                continue;
+            }
+            if(right ==null || left ==null) {
+                return false;
+            }
+            if(left.val != right.val) {
+                return false;
+            }
+            queue.add(left.left);
+            queue.add(right.right);
+            queue.add(left.right);
+            queue.add(right.left);
+        }
+        return true;
+
+    }
+
 
     //输入二叉树的镜像
     public static TreeNode mirrorTree(TreeNode root) {
