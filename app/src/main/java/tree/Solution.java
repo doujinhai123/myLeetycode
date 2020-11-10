@@ -20,8 +20,8 @@ class Solution {
         ;
         treeNode.right.left = new TreeNode(6);
         treeNode.right.right = new TreeNode(7);
-        System.out.println( binaryssTreePaths(treeNode));
-   ;
+        System.out.println(binaryTreePathsall(treeNode));
+        ;
 
     }
 
@@ -461,36 +461,44 @@ class Solution {
 
     }
 
-    public static List<String> binaryssTreePaths(TreeNode root) {
-        List<String> res = new ArrayList<>();
-        if (root == null)
-            return res;
-        //队列，节点和路径成对出现，路径就是从根节点到当前节点的路径
-        Queue<Object> queue = new LinkedList<>();
-        queue.add(root);
-        queue.add(root.val + "");
-        while (!queue.isEmpty()) {
-            TreeNode node = (TreeNode) queue.poll();
-            String path = (String) queue.poll();
-            //如果到叶子节点，说明找到了一条完整路径
-            if (node.left == null && node.right == null) {
-                res.add(path);
-            }
-            //左子节点不为空就把左子节点和路径存放到队列中
-            if (node.left != null) {
-                queue.add(node.left);
-                queue.add(path + "->" + node.left.val);
-            }
-            //右子节点不为空就把右子节点和路径存放到队列中
-            if (node.right != null) {
-                queue.add(node.right);
-                queue.add(path + "->" + node.right.val);
-            }
-
-
+    public static List<List<Integer>> binaryTreePathsall(TreeNode root) {
+        List<List<Integer>> allPaths = new ArrayList<>();
+        if (root == null) {
+            return allPaths;
         }
-        return res;
-    }
+        Queue<TreeNode> nodeQueue = new LinkedList<TreeNode>();
+        Queue<List<Integer>> pathQueue = new LinkedList<List<Integer>>();
 
+        nodeQueue.offer(root);
+        List<Integer> rootList = new LinkedList<>();
+        rootList.add(root.val);
+        pathQueue.offer(rootList);
+
+        while (!nodeQueue.isEmpty()) {
+            TreeNode node = nodeQueue.poll();
+            List<Integer> pollList = pathQueue.poll();
+
+            if (node.left == null && node.right == null) {
+                allPaths.add(pollList);
+            } else {
+                if (node.left != null) {
+                    nodeQueue.offer(node.left);
+                    List<Integer> temp = new ArrayList<>();
+                    temp.addAll(pollList);
+                    temp.add(node.left.val);
+                    pathQueue.offer(temp);
+                }
+
+                if (node.right != null) {
+                    nodeQueue.offer(node.right);
+                    List<Integer> temp = new ArrayList<>();
+                    temp.addAll(pollList);
+                    temp.add(node.right.val);
+                    pathQueue.offer(temp);
+                }
+            }
+        }
+        return allPaths;
+    }
 
 }
