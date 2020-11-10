@@ -500,5 +500,51 @@ class Solution {
         }
         return allPaths;
     }
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> allPaths = new ArrayList<>();
+        if (root == null) {
+            return allPaths;
+        }
+        Queue<TreeNode> nodeQueue = new LinkedList<TreeNode>();
+        Queue<List<Integer>> pathQueue = new LinkedList<List<Integer>>();
+
+        nodeQueue.offer(root);
+        List<Integer> rootList = new LinkedList<>();
+        rootList.add(root.val);
+        pathQueue.offer(rootList);
+
+        while (!nodeQueue.isEmpty()) {
+            TreeNode node = nodeQueue.poll();
+            List<Integer> pollList = pathQueue.poll();
+
+            if (node.left == null && node.right == null) {
+                int temp = 0;
+                for (int i = 0; i < pollList.size() ; i++) {
+                    temp = temp + pollList.get(i);
+                }
+                if(temp == sum) {
+                    allPaths.add(pollList);
+                }
+            } else {
+                if (node.left != null) {
+                    nodeQueue.offer(node.left);
+                    List<Integer> temp = new ArrayList<>();
+                    temp.addAll(pollList);
+                    temp.add(node.left.val);
+                    pathQueue.offer(temp);
+                }
+
+                if (node.right != null) {
+                    nodeQueue.offer(node.right);
+                    List<Integer> temp = new ArrayList<>();
+                    temp.addAll(pollList);
+                    temp.add(node.right.val);
+                    pathQueue.offer(temp);
+                }
+            }
+        }
+
+        return allPaths;
+    }
 
 }
