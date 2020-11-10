@@ -460,7 +460,7 @@ class Solution {
         getTree(root.right, new StringBuilder(sb));
 
     }
-
+//二叉树的所有路径
     public static List<List<Integer>> binaryTreePathsall(TreeNode root) {
         List<List<Integer>> allPaths = new ArrayList<>();
         if (root == null) {
@@ -500,6 +500,7 @@ class Solution {
         }
         return allPaths;
     }
+    //二叉树某一和的路径
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> allPaths = new ArrayList<>();
         if (root == null) {
@@ -546,5 +547,55 @@ class Solution {
 
         return allPaths;
     }
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+
+        List<List<Integer>> allPaths = new ArrayList<>();
+        if (root == null) {
+            return allPaths;
+        }
+        Queue<TreeNode> nodeQueue = new LinkedList<TreeNode>();
+        Queue<List<Integer>> pathQueue = new LinkedList<List<Integer>>();
+
+        nodeQueue.offer(root);
+        List<Integer> rootList = new LinkedList<>();
+        rootList.add(root.val);
+        pathQueue.offer(rootList);
+
+        while (!nodeQueue.isEmpty()) {
+            TreeNode node = nodeQueue.poll();
+            List<Integer> pollList = pathQueue.poll();
+
+            if (node.left == null && node.right == null) {
+                int temp = 0;
+                for (int i = 0; i < pollList.size() ; i++) {
+                    if(pollList.get(i) == p.val || pollList.get(i) == node.val) {
+                        allPaths.add(pollList);
+                    }
+                }
+            } else {
+                if (node.left != null) {
+                    nodeQueue.offer(node.left);
+                    List<Integer> temp = new ArrayList<>();
+                    temp.addAll(pollList);
+                    temp.add(node.left.val);
+                    pathQueue.offer(temp);
+                }
+
+                if (node.right != null) {
+                    nodeQueue.offer(node.right);
+                    List<Integer> temp = new ArrayList<>();
+                    temp.addAll(pollList);
+                    temp.add(node.right.val);
+                    pathQueue.offer(temp);
+                }
+            }
+        }
+
+        return allPaths;
+
+    }
+
+
 
 }
