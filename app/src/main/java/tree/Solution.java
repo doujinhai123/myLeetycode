@@ -1,8 +1,11 @@
 package tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -20,8 +23,10 @@ class Solution {
         ;
         treeNode.right.left = new TreeNode(6);
         treeNode.right.right = new TreeNode(7);
-        System.out.println(binaryTreePathsall(treeNode));
-        ;
+////        System.out.println(binaryTreePathsall(treeNode));
+        int valuer = lowestCommonAncestor(treeNode, new TreeNode(5), new TreeNode(6)).val;
+        System.out.println(valuer);
+
 
     }
 
@@ -460,7 +465,8 @@ class Solution {
         getTree(root.right, new StringBuilder(sb));
 
     }
-//二叉树的所有路径
+
+    //二叉树的所有路径
     public static List<List<Integer>> binaryTreePathsall(TreeNode root) {
         List<List<Integer>> allPaths = new ArrayList<>();
         if (root == null) {
@@ -500,6 +506,7 @@ class Solution {
         }
         return allPaths;
     }
+
     //二叉树某一和的路径
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> allPaths = new ArrayList<>();
@@ -520,10 +527,10 @@ class Solution {
 
             if (node.left == null && node.right == null) {
                 int temp = 0;
-                for (int i = 0; i < pollList.size() ; i++) {
+                for (int i = 0; i < pollList.size(); i++) {
                     temp = temp + pollList.get(i);
                 }
-                if(temp == sum) {
+                if (temp == sum) {
                     allPaths.add(pollList);
                 }
             } else {
@@ -547,55 +554,40 @@ class Solution {
 
         return allPaths;
     }
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
-
-        List<List<Integer>> allPaths = new ArrayList<>();
-        if (root == null) {
-            return allPaths;
-        }
-        Queue<TreeNode> nodeQueue = new LinkedList<TreeNode>();
-        Queue<List<Integer>> pathQueue = new LinkedList<List<Integer>>();
-
-        nodeQueue.offer(root);
-        List<Integer> rootList = new LinkedList<>();
-        rootList.add(root.val);
-        pathQueue.offer(rootList);
-
-        while (!nodeQueue.isEmpty()) {
-            TreeNode node = nodeQueue.poll();
-            List<Integer> pollList = pathQueue.poll();
-
-            if (node.left == null && node.right == null) {
-                int temp = 0;
-                for (int i = 0; i < pollList.size() ; i++) {
-                    if(pollList.get(i) == p.val || pollList.get(i) == node.val) {
-                        allPaths.add(pollList);
-                    }
-                }
-            } else {
-                if (node.left != null) {
-                    nodeQueue.offer(node.left);
-                    List<Integer> temp = new ArrayList<>();
-                    temp.addAll(pollList);
-                    temp.add(node.left.val);
-                    pathQueue.offer(temp);
-                }
-
-                if (node.right != null) {
-                    nodeQueue.offer(node.right);
-                    List<Integer> temp = new ArrayList<>();
-                    temp.addAll(pollList);
-                    temp.add(node.right.val);
-                    pathQueue.offer(temp);
-                }
+    public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        HashMap<Integer, TreeNode> hashMap = new HashMap<>();
+        HashSet<Integer> hashSet = new HashSet<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            System.out.println("sssssssssssssss" + node.val);
+            if (node.left != null) {
+                queue.add(node.left);
+                hashMap.put(node.left.val, node);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+                hashMap.put(node.right.val, node);
             }
         }
+        while (p != null) {
+            hashSet.add(p.val);
+            p = hashMap.get(p.val);
+        }
+        while (q != null) {
+            if (hashSet.contains(q.val)) {
+                return q;
+            } else {
+                q = hashMap.get(q.val);
+            }
+        }
+        for (Map.Entry<Integer, TreeNode> entry : hashMap.entrySet()) {
+            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue().val);
 
-        return allPaths;
 
+        }
+        return null;
     }
-
-
-
 }
