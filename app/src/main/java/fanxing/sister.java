@@ -1,0 +1,4 @@
+package fanxing;
+
+class sister {
+}

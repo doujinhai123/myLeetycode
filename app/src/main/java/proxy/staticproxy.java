@@ -7,11 +7,11 @@ import java.util.LinkedList;
 
 class staticproxy {
     public static void main(String[] args) {
-//        //目标对象
-//        IUserDao target = new UserDao();
-//        //代理对象
-//        UserDaoProxy proxy = new UserDaoProxy(target);
-//        proxy.save();
+        //目标对象
+        IUserDao target = new UserDao();
+        //代理对象
+        UserDaoProxy proxy = new UserDaoProxy(target);
+        proxy.save();
 
         ArrayList<String> linkedList = new ArrayList<>();
         linkedList.add("1");

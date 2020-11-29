@@ -1,5 +1,6 @@
 package tree;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.concurrent.BlockingQueue;
 
 import ClassInit.Sta;
 
@@ -15,6 +17,13 @@ class Solution {
     ArrayList arrayList = new ArrayList();
 
     public static void main(String[] args) {
+        String sss = "هوديس وبلوزات للرجال";
+       String[] result = sss.split(" ");
+
+
+
+
+
         TreeNode treeNode = new TreeNode(1);
         treeNode.left = new TreeNode(2);
         treeNode.right = new TreeNode(3);
