@@ -1,4 +1,4 @@
 package fanxing;
 
-class sister {
+public class sister {
 }

@@ -1,6 +1,6 @@
 package fanxing;
 
-class Father {
+public class Father {
     String s;
     public Father(String s) {
         this.s =s;
