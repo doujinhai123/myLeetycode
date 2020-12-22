@@ -6,7 +6,7 @@ public class deadLock {
 
         static {
             System.out.println("class A init.");
-            B b = new B();
+            B.test();
         }
 
         public static void test() {
@@ -18,7 +18,7 @@ public class deadLock {
 
         static {
             System.out.println("class B init.");
-            A a = new A();
+            A.test();
         }
 
         public static void test() {

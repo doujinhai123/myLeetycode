@@ -13,6 +13,20 @@ import java.util.Map;
 import java.util.Set;
 
 public class NumSolution {
+
+
+   static    {
+
+          aa = 5555;
+
+    }
+
+    static int aa = 33;
+    static {
+                System.out.println("sdsdsdsds"+aa);
+    }
+
+
     //无序数组
     public static int[] twoSum(int[] nums, int target) {
        int[] result = new int[2];
@@ -496,8 +510,23 @@ public int[] twoSumss(int[] nums, int target) {
 
 
     }
+    //大数相加
+    public static String addStrings(String num1, String num2) {
+        StringBuilder s = new StringBuilder();
+        int i = num1.length() - 1, j = num2.length() - 1, carry = 0;
+        while (i >= 0 || j >= 0 || carry != 0) {
+            int x = i < 0 ? 0 : num1.charAt(i--) - '0';
+            int y = j < 0 ? 0 : num2.charAt(j--) - '0';
+            int sum = x + y + carry;
+            s.append(sum % 10);//添加到字符串尾部
+            carry = sum / 10;
+        }
+        return s.reverse().toString();//对字符串反转
+    }
+
 public static void main (String[] args) {
-    hammingWeight(00000000000000000000000010000000);
+    addStrings("12367","89");
+    System.out.println(18%2);
 }
 
 
