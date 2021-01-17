@@ -1,15 +1,10 @@
 package ThreadAlgorithm;
 
 import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
-
-import ThreadBook.chapter02.section01.thread_2_1_1.project_1_t1.ThreadA;
-
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ABCprinter {
+public class threeThreadprinter {
 
     private static final Lock lock = new ReentrantLock();
     private static final Condition isA = lock.newCondition();
@@ -20,18 +15,22 @@ public class ABCprinter {
 
         @Override
         public void run() {
-            lock.lock();
-            for (int i = 0; i < 100; i++) {
-                System.out.println("A");
-                isB.signal();
-                try {
-                    Thread.sleep(1000);
-                    isA.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            while (true) {
+                lock.lock();
+
+                for (int i = 0; i < 100; i++) {
+                    System.out.println("A");
+                    isB.signal();
+                    try {
+                        Thread.sleep(1000);
+                        isA.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
+
+                lock.unlock();
             }
-            lock.unlock();
         }
 
     }
@@ -40,8 +39,8 @@ public class ABCprinter {
 
         @Override
         public void run() {
-            lock.lock();
-            for (int i = 0; i < 100; i++) {
+            while (true) {
+                lock.lock();
                 System.out.println("B");
                 isC.signal();
                 try {
@@ -50,8 +49,8 @@ public class ABCprinter {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                lock.unlock();
             }
-            lock.unlock();
         }
     }
 
@@ -59,8 +58,8 @@ public class ABCprinter {
 
         @Override
         public void run() {
-            lock.lock();
-            for (int i = 0; i < 100; i++) {
+            while (true) {
+                lock.lock();
                 System.out.println("C");
                 isA.signal();
                 try {
@@ -69,8 +68,8 @@ public class ABCprinter {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                lock.unlock();
             }
-            lock.unlock();
         }
     }
 
