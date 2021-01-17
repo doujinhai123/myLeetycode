@@ -25,6 +25,7 @@ public class ABCprinter {
                 System.out.println("A");
                 isB.signal();
                 try {
+                    Thread.sleep(1000);
                     isA.await();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -44,6 +45,7 @@ public class ABCprinter {
                 System.out.println("B");
                 isC.signal();
                 try {
+                    Thread.sleep(1000);
                     isB.await();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -62,6 +64,7 @@ public class ABCprinter {
                 System.out.println("C");
                 isA.signal();
                 try {
+                    Thread.sleep(1000);
                     isC.await();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -76,11 +79,9 @@ public class ABCprinter {
         ThreadA a=new ThreadA();
         ThreadB b=new ThreadB();
         ThreadC c=new ThreadC();
-
         a.join();
         b.join();
         c.join();
-
         a.start();
         b.start();
         c.start();
