@@ -20,18 +20,19 @@ public class ABCprinter {
 
         @Override
         public void run() {
-            lock.lock();
-            for (int i = 0; i < 100; i++) {
-                System.out.println("A");
-                isB.signal();
-                try {
+            try {
+                lock.lock();
+                for (int i = 0; i < 100; i++) {
+                    System.out.println("A");
+                    isB.signal();
                     Thread.sleep(1000);
                     isA.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
             }
-            lock.unlock();
         }
 
     }
@@ -40,18 +41,19 @@ public class ABCprinter {
 
         @Override
         public void run() {
-            lock.lock();
-            for (int i = 0; i < 100; i++) {
-                System.out.println("B");
-                isC.signal();
-                try {
+            try {
+                lock.lock();
+                for (int i = 0; i < 100; i++) {
+                    System.out.println("B");
+                    isC.signal();
                     Thread.sleep(1000);
                     isB.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
             }
-            lock.unlock();
         }
     }
 
@@ -59,18 +61,19 @@ public class ABCprinter {
 
         @Override
         public void run() {
-            lock.lock();
-            for (int i = 0; i < 100; i++) {
-                System.out.println("C");
-                isA.signal();
-                try {
+            try {
+                lock.lock();
+                for (int i = 0; i < 100; i++) {
+                    System.out.println("C");
+                    isA.signal();
                     Thread.sleep(1000);
                     isC.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
             }
-            lock.unlock();
         }
     }
 

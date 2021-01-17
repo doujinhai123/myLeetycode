@@ -15,20 +15,18 @@ public class threeThreadprinter {
 
         @Override
         public void run() {
-            while (true) {
+            for (int i = 0; i < 100; i++) {
                 lock.lock();
-
-                for (int i = 0; i < 100; i++) {
-                    System.out.println("A");
-                    isB.signal();
-                    try {
-                        Thread.sleep(1000);
+                try {
+                    Thread.sleep(1000);
+                    if (i % 3 == 0) {
+                        System.out.println("当前线程-------->" + Thread.currentThread().getName() + "-----" + i);
+                        isB.notifyAll();
                         isA.await();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-
                 lock.unlock();
             }
         }
@@ -39,13 +37,15 @@ public class threeThreadprinter {
 
         @Override
         public void run() {
-            while (true) {
+            for (int i = 0; i < 100; i++) {
                 lock.lock();
-                System.out.println("B");
-                isC.signal();
                 try {
                     Thread.sleep(1000);
-                    isB.await();
+                    if (i % 3 == 0) {
+                        System.out.println("当前线程-------->" + Thread.currentThread().getName() + "-----" + i);
+                        isC.notifyAll();
+                        isB.await();
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -58,18 +58,20 @@ public class threeThreadprinter {
 
         @Override
         public void run() {
-            while (true) {
+            for (int i = 0; i < 100; i++) {
                 lock.lock();
-                System.out.println("C");
-                isA.signal();
                 try {
                     Thread.sleep(1000);
-                    isC.await();
+                    if (i % 3 == 0) {
+                        System.out.println("当前线程-------->" + Thread.currentThread().getName() + "-----" + i);
+                        isA.notifyAll();
+                        isC.await();
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 lock.unlock();
-            }
+            };
         }
     }
 
