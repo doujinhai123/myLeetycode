@@ -1,10 +1,6 @@
 package ThreadAlgorithm;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.concurrent.locks.ReentrantLock;
 
-import mutileThread.part7.state_test_4.Lock;
 
 class ThreadConsumeCondition extends Thread {
     LockData mLockData;

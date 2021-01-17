@@ -33,6 +33,9 @@ class Apple extends Fruit{
     public String toString() {
         return "apple";
     }
+    public int getCount() {
+        return 80;
+    }
 }
 
 class Person{
