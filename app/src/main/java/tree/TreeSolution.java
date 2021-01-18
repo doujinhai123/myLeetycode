@@ -1,6 +1,5 @@
 package tree;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,11 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
-import java.util.concurrent.BlockingQueue;
 
-import ClassInit.Sta;
-
-class Solution {
+class TreeSolution {
     ArrayList arrayList = new ArrayList();
 
     public static void main(String[] args) {
@@ -27,8 +23,8 @@ class Solution {
         treeNode.left.right = new TreeNode(5);
         treeNode.right.left = new TreeNode(6);
         treeNode.right.right = new TreeNode(7);
-        Solution solution = new Solution();
-        System.out.println(solution.lastTraversalfeidigui(treeNode));
+        TreeSolution solution = new TreeSolution();
+        System.out.println(solution.levelOrderwwzhilist(treeNode));
 //        int valuer = lowestCommonAncestor(treeNode, new TreeNode(5), new TreeNode(6)).val;
 //        System.out.println(valuer);
 
@@ -231,14 +227,17 @@ class Solution {
     }
 
     //二叉树的之字形打印
-    public static List<List<Integer>> levelOrderwwzhilist(TreeNode root) {
-        List<List<Integer>> lists = new LinkedList<>();
+    public static ArrayList<ArrayList<Integer>> levelOrderwwzhilist(TreeNode root) {
+        ArrayList<ArrayList<Integer>> lists = new ArrayList<>();
+        if(root == null) {
+            return lists;
+        }
 
         Stack<TreeNode> stack1 = new Stack<>();
         stack1.add(root);
         Stack<TreeNode> stack2 = new Stack<>();
         while (!stack1.isEmpty() || !stack2.isEmpty()) {
-            List<Integer> allist = new LinkedList<>();
+            ArrayList<Integer> allist = new ArrayList<>();
             while (!stack1.isEmpty()) {
                 TreeNode val = stack1.pop();
                 allist.add(val.val);
@@ -252,7 +251,7 @@ class Solution {
             if (allist.size() > 0) {
                 lists.add(allist);
             }
-            List<Integer> bllist = new LinkedList<>();
+            ArrayList<Integer> bllist = new ArrayList<>();
             while (!stack2.isEmpty()) {
                 TreeNode val = stack2.pop();
                 bllist.add(val.val);
@@ -540,7 +539,7 @@ class Solution {
 
         return allPaths;
     }
-
+      //二叉树最近公共祖先
     public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         HashMap<Integer, TreeNode> hashMap = new HashMap<>();
         HashSet<Integer> hashSet = new HashSet<>();
