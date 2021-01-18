@@ -15,18 +15,19 @@ public class threeThreadprinter {
 
         @Override
         public void run() {
-            for (int i = 0; i < 100; i++) {
+            try {
                 lock.lock();
-                try {
+                for (int i = 0; i < 100; i++) {
                     Thread.sleep(1000);
-                    if (i % 3 == 0) {
-                        System.out.println("当前线程-------->" + Thread.currentThread().getName() + "-----" + i);
-                        isB.notifyAll();
+                    if(i % 3  == 0) {
+                        System.out.println("当前线程为--"+Thread.currentThread().getName() + "----" +i);
+                        isB.signalAll();
                         isA.await();
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
                 lock.unlock();
             }
         }
@@ -37,18 +38,20 @@ public class threeThreadprinter {
 
         @Override
         public void run() {
-            for (int i = 0; i < 100; i++) {
+            try {
                 lock.lock();
-                try {
+
+                for (int i = 0; i < 100; i++) {
                     Thread.sleep(1000);
-                    if (i % 3 == 0) {
-                        System.out.println("当前线程-------->" + Thread.currentThread().getName() + "-----" + i);
-                        isC.notifyAll();
+                    if(i % 3  == 1) {
+                        System.out.println("当前线程为--"+Thread.currentThread().getName() + "----" +i);
+                        isC.signalAll();
                         isB.await();
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
                 lock.unlock();
             }
         }
@@ -58,20 +61,21 @@ public class threeThreadprinter {
 
         @Override
         public void run() {
-            for (int i = 0; i < 100; i++) {
+            try {
                 lock.lock();
-                try {
+                for (int i = 0; i < 100; i++) {
                     Thread.sleep(1000);
-                    if (i % 3 == 0) {
-                        System.out.println("当前线程-------->" + Thread.currentThread().getName() + "-----" + i);
-                        isA.notifyAll();
+                    if(i % 3  == 2) {
+                        System.out.println("当前线程为--"+Thread.currentThread().getName() + "----" +i);
+                        isA.signalAll();
                         isC.await();
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
                 lock.unlock();
-            };
+            }
         }
     }
 
