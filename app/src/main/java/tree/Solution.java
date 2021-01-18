@@ -20,21 +20,17 @@ class Solution {
         String sss = "هوديس وبلوزات للرجال";
        String[] result = sss.split(" ");
 
-
-
-
-
         TreeNode treeNode = new TreeNode(1);
         treeNode.left = new TreeNode(2);
         treeNode.right = new TreeNode(3);
         treeNode.left.left = new TreeNode(4);
         treeNode.left.right = new TreeNode(5);
-        ;
         treeNode.right.left = new TreeNode(6);
         treeNode.right.right = new TreeNode(7);
-////        System.out.println(binaryTreePathsall(treeNode));
-        int valuer = lowestCommonAncestor(treeNode, new TreeNode(5), new TreeNode(6)).val;
-        System.out.println(valuer);
+        Solution solution = new Solution();
+        System.out.println(solution.lastTraversalfeidigui(treeNode));
+//        int valuer = lowestCommonAncestor(treeNode, new TreeNode(5), new TreeNode(6)).val;
+//        System.out.println(valuer);
 
 
     }
@@ -63,25 +59,6 @@ class Solution {
         return arrayList;
     }
 
-    //二叉树的前序非递归
-    public List<Integer> preorderTraversalfeidigui(TreeNode root) {
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-        while (!stack.isEmpty()) {
-            TreeNode treeNode = stack.pop();
-            arrayList.add(treeNode.val);
-            if (treeNode.right != null) {
-                stack.push(treeNode.right);
-            }
-            if (treeNode.left != null) {
-                stack.push(treeNode.left);
-            }
-
-        }
-        return arrayList;
-
-    }
 
     //二叉树的后序非递归 根左右  变为根右左  在变为左右跟
     public List<Integer> lastTraversalfeidigui(TreeNode root) {
@@ -93,10 +70,10 @@ class Solution {
         while (!stack.isEmpty()) {
             TreeNode treeNode = stack.pop();
             stackresult.push(treeNode);
-            if (treeNode.right != null) {
+            if (treeNode.left != null) {
                 stack.push(treeNode.left);
             }
-            if (treeNode.left != null) {
+            if (treeNode.right != null) {
                 stack.push(treeNode.right);
             }
 
