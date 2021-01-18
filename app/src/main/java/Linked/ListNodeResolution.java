@@ -3,20 +3,34 @@ package Linked;
 public class ListNodeResolution {
     //反转链表
     public static ListNode revertList(ListNode head) {
+//        ListNode pre = null;
+//        ListNode now = head;
+//        ListNode post = head.next;
+//        //注意是需要判断到post 不等于空的时候
+//        while (post != null) {
+//            now.next = pre;
+//            pre = now;
+//            now = post;
+//            post = post.next;
+//        }
+//        //注意是now的next 辞职post为null
+//        now.next = pre;
+//        return now;
+        if(head == null) {
+            return null;
+        }
         ListNode pre = null;
         ListNode now = head;
         ListNode post = head.next;
-        //注意是需要判断到post 不等于空的时候
         while (post != null) {
             now.next = pre;
             pre = now;
             now = post;
             post = post.next;
         }
-        //注意是now的next 辞职post为null
         now.next = pre;
-        return now;
 
+        return now;
 
     }
 
