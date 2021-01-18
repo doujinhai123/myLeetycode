@@ -1,8 +1,7 @@
 package Linked;
 
 public class ListNodeResolution {
-
-
+    //反转链表
     public static ListNode revertList(ListNode head) {
         ListNode pre = null;
         ListNode now = head;
