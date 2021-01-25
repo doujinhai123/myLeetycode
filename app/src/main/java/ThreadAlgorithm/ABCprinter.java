@@ -74,6 +74,9 @@ public class ABCprinter {
             } finally {
                 lock.unlock();
             }
+            String ss = "";
+            Integer.t
+
         }
     }
 

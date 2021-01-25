@@ -21,12 +21,12 @@ public class ListNodeResolution {
         }
         ListNode pre = null;
         ListNode now = head;
-        ListNode post = head.next;
-        while (post != null) {
+        ListNode fast = head.next;
+        while (fast != null) {
             now.next = pre;
             pre = now;
-            now = post;
-            post = post.next;
+            now = fast;
+            fast = fast.next;
         }
         now.next = pre;
 

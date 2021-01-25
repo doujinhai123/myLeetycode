@@ -539,6 +539,22 @@ class TreeSolution {
 
         return allPaths;
     }
+
+    //二叉搜索数的最近公共祖先
+    public TreeNode lowestSearchCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        TreeNode  header = root;
+
+        while (true) {
+            if(p.val < header.val && q.val < header.val) {
+                 header = header.left;
+            } else if(p.val > header.val && q.val > header.val) {
+                header = header.right;
+            } else  {
+                return header;
+            }
+        }
+
+    }
       //二叉树最近公共祖先
     public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         HashMap<Integer, TreeNode> hashMap = new HashMap<>();
