@@ -591,4 +591,20 @@ class TreeSolution {
         }
         return null;
     }
+    //二叉树的公共祖先
+    public int lowestCommonAncestor (TreeNode root, int o1, int o2) {
+        // write code here
+        return getLowestComAn(root, o1, o2).val;
+    }
+    public static TreeNode getLowestComAn(TreeNode root, int node1, int node2){
+        if(root == null)
+            return null;
+        if(root.val == node1 || root.val == node2)
+            return root;
+        TreeNode left = getLowestComAn(root.left, node1, node2);
+        TreeNode right = getLowestComAn(root.right, node1, node2);
+        if(left == null) return right;
+        if(right == null) return left;
+        return root;
+    }
 }
