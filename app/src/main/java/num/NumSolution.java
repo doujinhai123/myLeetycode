@@ -25,50 +25,43 @@ public class NumSolution {
                 System.out.println("sdsdsdsds"+aa);
     }
 
-    //快速排序
-
-    public class Solution {
-        /**
-         * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
-         * 将给定数组排序
-         * @param arr int整型一维数组 待排序的数组
-         * @return int整型一维数组
-         */
-        public int[] MySort (int[] arr) {
-            // 写个快速排序
-            //int[] copyArr = Arrays.copyOfRange(arr,0,arr.length);
-            quickSort(arr,0,arr.length-1);
-            return arr;
-
+    private static void setFastArray(int[] selecetSortArray,int start,int end) {
+        if(start >end) {
+            return;
         }
+        int temper = setFastArraydegui(selecetSortArray,start,end);
+        setFastArray(selecetSortArray,start,temper-1);
+        setFastArray(selecetSortArray,temper+1,end);
 
-        public void quickSort (int[] arr, int start, int end) {
-            if(end<=start)  return;
-            int k = partition(arr, start, end);
-            quickSort(arr,start, k-1);
-            quickSort(arr, k+1, end);
-        }
-
-        public int partition(int[] arr, int start, int end){
-            int pivot = arr[start];
-            int mark = start;
-            for(int i = start+1; i<= end ; i++){
-                if(arr[i] < pivot){
-                    mark++;
-                    swap(arr, i, mark);
-                }
-            }
-            swap(arr, start, mark);
-
-            return mark;
-        }
-
-        public void swap (int[] arr, int i, int j){
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
     }
+
+    private static int  setFastArraydegui(int[] selecetSortArray, int tempStart, int tempEnd) {
+
+        int base = selecetSortArray[tempEnd];
+        while (tempEnd > tempStart) {
+            while (tempEnd > tempStart && base >= selecetSortArray[tempStart])
+            {
+                tempStart++;
+            }
+            if(tempEnd > tempStart) {
+                int temperStart = selecetSortArray[tempStart];
+                selecetSortArray[tempStart] = selecetSortArray[tempEnd];
+                selecetSortArray[tempEnd] = temperStart;
+                tempEnd--;
+            }
+            while (tempEnd > tempStart && base <= selecetSortArray[tempEnd]) {
+                tempEnd--;
+            }
+            if(tempEnd <tempStart) {
+                int temperStarter = selecetSortArray[tempStart];
+                selecetSortArray[tempStart] = selecetSortArray[tempEnd];
+                selecetSortArray[tempEnd] = temperStarter;
+                tempStart++;
+            }
+        }
+        return tempStart;
+    }
+
     //字符串转整数
     public int strToInt(String str) {
         int res = 0, bndry = Integer.MAX_VALUE / 10;
