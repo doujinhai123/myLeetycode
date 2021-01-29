@@ -1,5 +1,8 @@
 package tree;
 
+import android.view.View;
+import android.view.ViewGroup;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -30,8 +33,24 @@ class TreeSolution {
 
 
     }
+     //view树的有多少个孩子
+    public ArrayList<View> getViewCountByOrder(View rootview) {
+        ArrayList<View> arrayList = new ArrayList<>();
+        Queue<View> queue = new LinkedList<>();
+        queue.add(rootview);
+        while (!queue.isEmpty()) {
+            View view = queue.poll();
+            arrayList.add(view);
+            if (view instanceof ViewGroup) {
+                for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                    queue.add(((ViewGroup) view).getChildAt(i));
+                }
+            }
 
-    //二叉树的前学
+        }
+        return arrayList;
+    }
+        //二叉树的前学
     public List<Integer> preorderTraversal(TreeNode root) {
         if (root == null) {
             return arrayList;
