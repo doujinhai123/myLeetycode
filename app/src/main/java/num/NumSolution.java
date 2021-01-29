@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,9 +26,6 @@ public class NumSolution {
     }
 
     //快速排序
-
-    import java.util.*;
-
 
     public class Solution {
         /**
@@ -73,7 +69,6 @@ public class NumSolution {
             arr[j] = temp;
         }
     }
-
     //字符串转整数
     public int strToInt(String str) {
         int res = 0, bndry = Integer.MAX_VALUE / 10;
