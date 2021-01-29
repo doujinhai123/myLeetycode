@@ -36,11 +36,11 @@ public class NumSolution {
     public static void quickSort(int[] arr, int begin, int end) {
 
         // 数组为空
-        if(arr == null || arr.length < 1) {
+        if (arr == null || arr.length < 1) {
             return;
         }
 
-        if(begin >= end) {
+        if (begin >= end) {
             return;
         }
 
@@ -49,27 +49,28 @@ public class NumSolution {
         quickSort(arr, pivot + 1, end);
 
     }
+
     public static int partition(int[] arr, int begin, int end) {
-        if(begin >= end) {
+        if (begin >= end) {
             return begin;
         }
         int pivot = arr[begin];
 
-        while(begin < end) {
+        while (begin < end) {
 
-            while(begin < end && pivot <= arr[end]) {
-                end --;
+            while (begin < end && pivot <= arr[end]) {
+                end--;
             }
 
-            if(begin < end) {
+            if (begin < end) {
                 arr[begin] = arr[end];
             }
 
-            while(begin < end && pivot >= arr[begin] ) {
+            while (begin < end && pivot >= arr[begin]) {
                 begin++;
             }
 
-            if(begin < end) {
+            if (begin < end) {
                 arr[end] = arr[begin];
             }
 
@@ -81,15 +82,15 @@ public class NumSolution {
 
     //x的n次幂函
     public static double caalulatePower(double base, int exponent) {
-        if(base == 0.0){
+        if (base == 0.0) {
             return 0.0;
         }
         double result = 1.0d;
         int e = exponent > 0 ? exponent : -exponent;
-        for(int i = 1;i <= e; i++){
+        for (int i = 1; i <= e; i++) {
             result *= base;
         }
-        return exponent > 0 ? result : 1/result;
+        return exponent > 0 ? result : 1 / result;
     }
 
 
@@ -110,22 +111,23 @@ public class NumSolution {
         }
         return sign * res;
     }
- //有效的括号
+
+    //有效的括号
     public boolean isValid(String s) {
-        if(s.isEmpty())
+        if (s.isEmpty())
             return true;
-        Stack<Character> stack=new Stack<Character>();
-        for(char c:s.toCharArray()){
-            if(c=='(')
+        Stack<Character> stack = new Stack<Character>();
+        for (char c : s.toCharArray()) {
+            if (c == '(')
                 stack.push(')');
-            else if(c=='{')
+            else if (c == '{')
                 stack.push('}');
-            else if(c=='[')
+            else if (c == '[')
                 stack.push(']');
-            else if(stack.empty()||c!=stack.pop())
+            else if (stack.empty() || c != stack.pop())
                 return false;
         }
-        if(stack.empty())
+        if (stack.empty())
             return true;
         return false;
     }
@@ -626,6 +628,29 @@ public class NumSolution {
 
     }
 
+    //字符串转int
+    public int strToIntResult(String str) {
+        char[] c = str.trim().toCharArray();
+        if (c.length == 0) return 0;
+        int res = 0, bndry = Integer.MAX_VALUE / 10;
+        int i = 1, sign = 1;
+        if (c[0] == '-') {
+            sign = -1;
+        } else if (c[0] == '+') {
+            sign = 1;
+        } else {
+            i = 0;
+        }
+        for (int j = i; j < c.length; j++) {
+            if (c[j] < '0' || c[j] > '9') break;
+            if (res > bndry || res == bndry && c[j] > '7') {
+                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+            res = res * 10 + (c[j] - '0');
+        }
+        return sign * res;
+    }
+
     //大数相加
     public static String addStrings(String num1, String num2) {
         StringBuilder s = new StringBuilder();
@@ -648,8 +673,8 @@ public class NumSolution {
 //            System.out.println(fastASrray[i]);
 //        }
         // x的次幂
-        System.out.println(caalulatePower(3,4));
-      ;
+        System.out.println(caalulatePower(3, 4));
+        ;
     }
 
 
