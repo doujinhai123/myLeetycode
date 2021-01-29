@@ -629,7 +629,7 @@ public class NumSolution {
     }
 
     //字符串转int
-    public int strToIntResult(String str) {
+    public static int strToIntResult(String str) {
         char[] c = str.trim().toCharArray();
         if (c.length == 0) return 0;
         int res = 0, bndry = Integer.MAX_VALUE / 10;
@@ -674,7 +674,10 @@ public class NumSolution {
 //        }
         // x的次幂
         System.out.println(caalulatePower(3, 4));
+        //字符串转整数
+        System.out.println(strToIntResult("4545654445456"));
         ;
+
     }
 
 
