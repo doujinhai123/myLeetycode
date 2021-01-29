@@ -10,6 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 public class NumSolution {
 
@@ -94,6 +95,25 @@ public class NumSolution {
             res = res * 10 + (str.charAt(j) - '0');
         }
         return sign * res;
+    }
+ //有效的括号
+    public boolean isValid(String s) {
+        if(s.isEmpty())
+            return true;
+        Stack<Character> stack=new Stack<Character>();
+        for(char c:s.toCharArray()){
+            if(c=='(')
+                stack.push(')');
+            else if(c=='{')
+                stack.push('}');
+            else if(c=='[')
+                stack.push(']');
+            else if(stack.empty()||c!=stack.pop())
+                return false;
+        }
+        if(stack.empty())
+            return true;
+        return false;
     }
 
     //无序数组
