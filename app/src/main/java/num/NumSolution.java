@@ -79,6 +79,20 @@ public class NumSolution {
         return begin;
     }
 
+    //x的n次幂函
+    public static double caalulatePower(double base, int exponent) {
+        if(base == 0.0){
+            return 0.0;
+        }
+        double result = 1.0d;
+        int e = exponent > 0 ? exponent : -exponent;
+        for(int i = 1;i <= e; i++){
+            result *= base;
+        }
+        return exponent > 0 ? result : 1/result;
+    }
+
+
     //字符串转整数
     public int strToInt(String str) {
         int res = 0, bndry = Integer.MAX_VALUE / 10;
@@ -627,11 +641,15 @@ public class NumSolution {
     }
 
     public static void main(String[] args) {
-        int[] fastASrray = new int[]{6,35,67,8,2,45,67,98,343};
-        mySortFast(fastASrray);
-        for (int i = 0; i < fastASrray.length; i++) {
-            System.out.println(fastASrray[i]);
-        }
+//        //快速排序
+//        int[] fastASrray = new int[]{6,35,67,8,2,45,67,98,343};
+//        mySortFast(fastASrray);
+//        for (int i = 0; i < fastASrray.length; i++) {
+//            System.out.println(fastASrray[i]);
+//        }
+        // x的次幂
+        System.out.println(caalulatePower(3,4));
+      ;
     }
 
 
