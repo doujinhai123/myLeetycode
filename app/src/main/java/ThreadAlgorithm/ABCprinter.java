@@ -3,11 +3,8 @@ package ThreadAlgorithm;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-import ThreadBook.chapter02.section01.thread_2_1_1.project_1_t1.ThreadA;
 
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class ABCprinter {
 
@@ -74,8 +71,6 @@ public class ABCprinter {
             } finally {
                 lock.unlock();
             }
-            String ss = "";
-            Integer.t
 
         }
     }

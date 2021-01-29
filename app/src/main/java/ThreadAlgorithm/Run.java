@@ -2,8 +2,6 @@ package ThreadAlgorithm;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import ThreadBook.chapter06.section05.project_1_singleton_8.MyThread;
-
 public class Run {
 
 	public static void main(String[] args) {
