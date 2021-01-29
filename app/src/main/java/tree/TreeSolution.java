@@ -74,8 +74,28 @@ class TreeSolution {
         return arrayList;
     }
 
+    //二叉树的前序遍历 用stack实现
+    public List<Integer> preorder22TraversalByStack(TreeNode root) {
+        List<Integer> result = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
 
-    //二叉树的后序非递归 根左右  变为根右左  在变为左右跟
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            result.add(node.val);
+            if(node.right != null) {
+                stack.push(node.right);
+            }
+
+            if(node.left != null) {
+                stack.push(node.left);
+            }
+        }
+        return result;
+    }
+
+
+        //二叉树的后序非递归 根左右  变为根右左  在变为左右跟
     public List<Integer> lastTraversalfeidigui(TreeNode root) {
         ArrayList<Integer> arrayList = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
