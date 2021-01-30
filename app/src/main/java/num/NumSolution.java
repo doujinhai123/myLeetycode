@@ -88,25 +88,7 @@ public class NumSolution {
         return exponent > 0 ? result : 1 / result;
     }
 
-    //有效的括号
-    public static boolean isValid(String s) {
-        if (s.isEmpty())
-            return true;
-        Stack<Character> stack = new Stack<Character>();
-        for (char c : s.toCharArray()) {
-            if (c == '(')
-                stack.push(')');
-            else if (c == '{')
-                stack.push('}');
-            else if (c == '[')
-                stack.push(']');
-            else if (stack.empty() || c != stack.pop())
-                return false;
-        }
-        if (stack.empty())
-            return true;
-        return false;
-    }
+
 
     //无序数组
     public static int[] twoSum(int[] nums, int target) {
@@ -287,32 +269,7 @@ public class NumSolution {
 
     }
 
-    //第一个只出现一次的字符
-    public static char firstUniqChar(String s) {
-        char[] ss = s.toCharArray();
-        int j = 0;
-        int counter = 0;
 
-        LinkedHashMap<Character, Integer> hashMap = new LinkedHashMap<>();
-        for (int i = 0; i < ss.length; i++) {
-            if (hashMap.containsKey(ss[i])) {
-                int count = hashMap.get(ss[i]);
-                count = count + 1;
-                hashMap.put(ss[i], count);
-            } else {
-                hashMap.put(ss[i], counter);
-            }
-        }
-        ArrayList<Character> arrayList = new ArrayList<>();
-        for (Map.Entry<Character, Integer> entry : hashMap.entrySet()) {
-            if (entry.getValue() == 1) {
-                return entry.getKey();
-            }
-        }
-        return ' ';
-
-
-    }
 
 
     //只有一个重复的整数，找出这个重复的整数
@@ -397,7 +354,7 @@ public class NumSolution {
     }
 
     //把奇数放到偶数的前面
-    public int[] exchange(int[] nums) {
+    public static int[] exchange(int[] nums) {
         int left = 0;
         int end = nums.length - 1;
         while (left <= end) {
@@ -448,34 +405,7 @@ public class NumSolution {
 //            sb.append(s);
 //        return sb.toString();
 //    }
-    //翻转单词顺序
 
-    public static String reverseWords(String s) {
-        String[] ss = s.trim().split(" ");
-        StringBuffer stringBuffer = new StringBuffer();
-        for (int i = ss.length - 1; i >= 0; i--) {
-            if (ss[i].trim().length() == 0) {
-                continue;
-            }
-
-            stringBuffer.append(ss[i]).append(" ");
-        }
-        return stringBuffer.toString().trim();
-
-    }
-
-    //左旋抓字符串
-    public String reverseLeftWords(String s, int n) {
-        StringBuffer stringBuffer = new StringBuffer();
-        for (int i = n; i < s.length(); i++) {
-            stringBuffer.append(s.charAt(i));
-        }
-        for (int i = 0; i < n; i++) {
-            stringBuffer.append(s.charAt(i));
-        }
-        return stringBuffer.toString();
-
-    }
 
     // 和为S的整数序列
     public static int[][] findContinuousSequence(int target) {
@@ -569,10 +499,6 @@ public class NumSolution {
         return -1;
     }
 
-    ////连续子数组的最大和
-//public int maxSubArray(int[] nums) {
-//
-//}
     //二维数组的查找
     public boolean findNumberIn2DArray(int[][] matrix, int target) {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
@@ -593,19 +519,6 @@ public class NumSolution {
 
     }
 
-    //替换空格
-    public static String replaceSpace(String s) {
-        StringBuffer stringBuffer = new StringBuffer();
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == ' ') {
-                stringBuffer.append("%20");
-            } else {
-                stringBuffer.append(s.charAt(i));
-            }
-        }
-        return stringBuffer.toString();
-
-    }
 //二进制中1的个数
 
     public static int hammingWeight(int n) {
@@ -620,51 +533,28 @@ public class NumSolution {
 
     }
 
-    //字符串转int
-    public static int strToIntResult(String str) {
-        char[] c = str.trim().toCharArray();
-        if (c.length == 0) return 0;
-        int res = 0, bndry = Integer.MAX_VALUE / 10;
-        int i = 1, sign = 1;
-        if (c[0] == '-') {
-            sign = -1;
-        } else if (c[0] == '+') {
-            sign = 1;
-        } else {
-            i = 0;
-        }
-        for (int j = i; j < c.length; j++) {
-            if (c[j] < '0' || c[j] > '9') break;
-            if (res > bndry || res == bndry && c[j] > '7') {
-                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-            }
-            res = res * 10 + (c[j] - '0');
-        }
-        return sign * res;
-    }
 
-    //大数相加
-    public static String addStrings(String num1, String num2) {
-        StringBuilder s = new StringBuilder();
-        int i = num1.length() - 1, j = num2.length() - 1, carry = 0;
-        while (i >= 0 || j >= 0 || carry != 0) {
-            int x = i < 0 ? 0 : num1.charAt(i--) - '0';
-            int y = j < 0 ? 0 : num2.charAt(j--) - '0';
-            int sum = x + y + carry;
-            s.append(sum % 10);//添加到字符串尾部
-            carry = sum / 10;
+    public static int maxsumofSubarray (int[] arr) {
+        // write code here
+        if(arr.length==0||arr==null)
+            return 0;
+        int sum=arr[0];
+        int len=arr.length;
+        for(int i=1;i<len;i++){
+            if(sum+arr[i]>arr[i])
+                sum=sum+arr[i];
+            else
+                sum=arr[i];
         }
-        return s.reverse().toString();//对字符串反转
+        return sum;
     }
 
     public static void main(String[] args) {
         int[] array = new int[]{1,2,3,4,5,6,7};
         //快速排序
         quickSort(array,0,array.length-1);
-        //大数相加
-        System.out.println(addStrings("12345","4567"));
-        //字符串转int
-        System.out.println(strToIntResult("1234"));
+        //奇数和偶数调换
+        exchange(array);
         //二分查找
         System.out.println(binarySearch(array,7));
         //二分查找 找到连个索引
@@ -673,15 +563,8 @@ public class NumSolution {
         System.out.println(squeezeSolution(array));
         ///数组中只出现一次的次数
         System.out.println(singleNumbers(array));
-        ///第一个只出现一次的字符
-        firstUniqChar("sds");
-        System.out.println(array);
-        //x的次幂
-        System.out.println(caalulatePower(4,2));
-        //有效括号
-        System.out.println(isValid("()"));
-        //替换空格
-        replaceSpace("sdd");
+        //子数组的最大累加和
+        maxsumofSubarray(array);
         //和为S的整数序列
         findContinuousSequence(15);
     }
