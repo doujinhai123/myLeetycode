@@ -27,11 +27,6 @@ public class NumSolution {
         System.out.println("sdsdsdsds" + aa);
     }
 
-    public static int[] mySortFast(int[] arr) {
-        // write code here
-        quickSort(arr, 0, arr.length - 1);
-        return arr;
-    }
 
     public static void quickSort(int[] arr, int begin, int end) {
 
@@ -93,27 +88,8 @@ public class NumSolution {
         return exponent > 0 ? result : 1 / result;
     }
 
-
-    //字符串转整数
-    public int strToInt(String str) {
-        int res = 0, bndry = Integer.MAX_VALUE / 10;
-        int i = 0, sign = 1, length = str.length();
-        if (length == 0) return 0;
-        while (str.charAt(i) == ' ')
-            if (++i == length) return 0;
-        if (str.charAt(i) == '-') sign = -1;
-        if (str.charAt(i) == '-' || str.charAt(i) == '+') i++;
-        for (int j = i; j < length; j++) {
-            if (str.charAt(j) < '0' || str.charAt(j) > '9') break;
-            if (res > bndry || res == bndry && str.charAt(j) > '7')
-                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-            res = res * 10 + (str.charAt(j) - '0');
-        }
-        return sign * res;
-    }
-
     //有效的括号
-    public boolean isValid(String s) {
+    public static boolean isValid(String s) {
         if (s.isEmpty())
             return true;
         Stack<Character> stack = new Stack<Character>();
@@ -154,7 +130,7 @@ public class NumSolution {
         int[] result = new int[2];
         int first = 0;
         int end = numbers.length - 1;
-        while (first < numbers.length) {
+        while (first <= numbers.length) {
             if (numbers[first] + numbers[end] == target) {
                 result[0] = first + 1;
                 result[1] = end + 1;
@@ -235,9 +211,11 @@ public class NumSolution {
                 left = mid + 1;
             } else if (nums[mid] > target) {
                 right = mid - 1;
+            } else if(nums[mid] == target) {
+                return mid;
             }
         }
-        return left;
+        return -1;
     }
 
     // 任意一个重复数字
@@ -666,17 +644,24 @@ public class NumSolution {
     }
 
     public static void main(String[] args) {
-//        //快速排序
-//        int[] fastASrray = new int[]{6,35,67,8,2,45,67,98,343};
-//        mySortFast(fastASrray);
-//        for (int i = 0; i < fastASrray.length; i++) {
-//            System.out.println(fastASrray[i]);
-//        }
-        // x的次幂
-        System.out.println(caalulatePower(3, 4));
-        //字符串转整数
-        System.out.println(strToIntResult("4545654445456"));
-        ;
+        int[] array = new int[]{1,2,3,4,5,6,7};
+        //二分查找
+        System.out.println(binarySearch(array,7));
+        //二分查找 找到连个索引
+        System.out.println(twoSumSort(array,6));
+        //大数相加
+        System.out.println(addStrings("12345","4567"));
+        //字符串转int
+        System.out.println(strToIntResult("1234"));
+        //快速排序
+        quickSort(array,0,array.length-1);
+        System.out.println(array);
+        //x的次幂
+        System.out.println(caalulatePower(4,2));
+        //有效括号
+        System.out.println(isValid("()"));
+
+
 
     }
 
