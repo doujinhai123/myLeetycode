@@ -148,9 +148,10 @@ public class NumSolution {
 //            //如果存在则返回
 //            if (map.containsKey(target - nums[i])) {
 //                return new int[]{target - nums[i], nums[i]};
-//            }
-//            //不存在则存入
+//            } else {
+//                    //不存在则存入
 //            map.put(nums[i], i);
+//            }
 //        }
 //        return new int[0];
 
@@ -273,7 +274,7 @@ public class NumSolution {
         }
         ArrayList<Integer> arrayList = new ArrayList<>();
         for (Map.Entry<Integer, Integer> entry : hashMap.entrySet()) {
-            if (entry.getValue() == 0) {
+            if (entry.getValue() == 1) {
                 arrayList.add(entry.getKey());
             }
         }
@@ -287,7 +288,7 @@ public class NumSolution {
     }
 
     //第一个只出现一次的字符
-    public char firstUniqChar(String s) {
+    public static char firstUniqChar(String s) {
         char[] ss = s.toCharArray();
         int j = 0;
         int counter = 0;
@@ -304,7 +305,7 @@ public class NumSolution {
         }
         ArrayList<Character> arrayList = new ArrayList<>();
         for (Map.Entry<Character, Integer> entry : hashMap.entrySet()) {
-            if (entry.getValue() == 0) {
+            if (entry.getValue() == 1) {
                 return entry.getKey();
             }
         }
@@ -664,6 +665,10 @@ public class NumSolution {
         System.out.println(twoSumSort(array,6));
         ///三数之和为0
         System.out.println(squeezeSolution(array));
+        ///数组中只出现一次的次数
+        System.out.println(singleNumbers(array));
+        ///第一个只出现一次的字符
+        firstUniqChar("sds");
         //大数相加
         System.out.println(addStrings("12345","4567"));
         //字符串转int
