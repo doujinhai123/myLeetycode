@@ -594,7 +594,7 @@ public class NumSolution {
     }
 
     //替换空格
-    public String replaceSpace(String s) {
+    public static String replaceSpace(String s) {
         StringBuffer stringBuffer = new StringBuffer();
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == ' ') {
@@ -659,6 +659,12 @@ public class NumSolution {
 
     public static void main(String[] args) {
         int[] array = new int[]{1,2,3,4,5,6,7};
+        //快速排序
+        quickSort(array,0,array.length-1);
+        //大数相加
+        System.out.println(addStrings("12345","4567"));
+        //字符串转int
+        System.out.println(strToIntResult("1234"));
         //二分查找
         System.out.println(binarySearch(array,7));
         //二分查找 找到连个索引
@@ -669,21 +675,14 @@ public class NumSolution {
         System.out.println(singleNumbers(array));
         ///第一个只出现一次的字符
         firstUniqChar("sds");
-        //大数相加
-        System.out.println(addStrings("12345","4567"));
-        //字符串转int
-        System.out.println(strToIntResult("1234"));
-        //快速排序
-        quickSort(array,0,array.length-1);
         System.out.println(array);
         //x的次幂
         System.out.println(caalulatePower(4,2));
         //有效括号
         System.out.println(isValid("()"));
-
-
-
+        //替换空格
+        replaceSpace("sdd");
+        //和为S的整数序列
+        findContinuousSequence(15);
     }
-
-
 }
