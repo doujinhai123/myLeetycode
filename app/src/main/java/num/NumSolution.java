@@ -534,21 +534,6 @@ public class NumSolution {
     }
 
 
-    public static int maxsumofSubarray (int[] arr) {
-        // write code here
-        if(arr.length==0||arr==null)
-            return 0;
-        int sum=arr[0];
-        int len=arr.length;
-        for(int i=1;i<len;i++){
-            if(sum+arr[i]>arr[i])
-                sum=sum+arr[i];
-            else
-                sum=arr[i];
-        }
-        return sum;
-    }
-
     public static void main(String[] args) {
         int[] array = new int[]{1,2,3,4,5,6,7};
         //快速排序
@@ -563,8 +548,6 @@ public class NumSolution {
         System.out.println(squeezeSolution(array));
         ///数组中只出现一次的次数
         System.out.println(singleNumbers(array));
-        //子数组的最大累加和
-        maxsumofSubarray(array);
         //和为S的整数序列
         findContinuousSequence(15);
     }
