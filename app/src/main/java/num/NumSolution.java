@@ -126,26 +126,39 @@ public class NumSolution {
     }
     //有序数组 两数之和
 
-    public static int[] twoSumSort(int[] numbers, int target) {
+    public static int[] twoSumSort(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length - 1;
         int[] result = new int[2];
-        int first = 0;
-        int end = numbers.length - 1;
-        while (first <= numbers.length) {
-            if (numbers[first] + numbers[end] == target) {
-                result[0] = first + 1;
-                result[1] = end + 1;
+        while (start <= end) {
+            if (nums[start] + nums[end] == target) {
+                result[0] = nums[start];
+                result[1] = nums[end];
                 return result;
-            } else if (numbers[first] + numbers[end] < target) {
-                first++;
+            } else if (nums[start] + nums[end] < target) {
+                start++;
             } else {
                 end--;
             }
         }
         return result;
+        //第二种用hash表
+//        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+//        for (int i = 0; i < nums.length; i++) {
+//            //如果存在则返回
+//            if (map.containsKey(target - nums[i])) {
+//                return new int[]{target - nums[i], nums[i]};
+//            }
+//            //不存在则存入
+//            map.put(nums[i], i);
+//        }
+//        return new int[0];
+
     }
 
+
     // 三数之和
-    private List<List<Integer>> squeezeSolution(int[] nums) {
+    private static List<List<Integer>> squeezeSolution(int[] nums) {
         if (nums == null || nums.length <= 2) {
             return Collections.emptyList();
         }
@@ -649,6 +662,8 @@ public class NumSolution {
         System.out.println(binarySearch(array,7));
         //二分查找 找到连个索引
         System.out.println(twoSumSort(array,6));
+        ///三数之和为0
+        System.out.println(squeezeSolution(array));
         //大数相加
         System.out.println(addStrings("12345","4567"));
         //字符串转int
