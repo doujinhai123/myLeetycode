@@ -202,20 +202,21 @@ public class ListNodeResolution {
         return slow.next;
     }
 
-    //删除链表中的重复元素
-    public ListNode deleteDuplicates(ListNode head) {
+    //删除链表中的所有重复元素，剩余的元素都为非重复的
+    public static ListNode deleteDuplicates(ListNode head) {
         if (head == null || head.next == null) {
             return null;
         }
         ListNode slow = head;
         ListNode fast = head.next;
-        while (fast != null && fast.next != null) {
-            if (fast.val == slow.val) {
-            } else {
+        while (fast != null) {
+            if(slow.val == fast.val) {
+                fast = fast.next;
+            }else {
                 slow.next = fast;
                 slow = fast;
+                fast = fast.next;
             }
-            fast = fast.next;
         }
         return head;
 
@@ -237,7 +238,7 @@ public class ListNodeResolution {
             return null;
         }
         ListNode runner = head;
-        while (runner != null && runner.next != null) {
+        while ( runner.next != null) {
             if (runner.val == runner.next.val) {
                 runner.next = runner.next.next;
             } else {
@@ -309,30 +310,43 @@ public class ListNodeResolution {
         return head3.next;
 
     }
+    //遍历链表
+
+    public static void foreachListNode(ListNode node) {
+        ListNode header = node;
+        while (header != null) {
+            System.out.println(header.val);
+            header = header.next;
+        }
+    }
 
 
 
     public static void main(String[] args) {
-        ListNode listNode = new ListNode(4);
-        listNode.next = new ListNode(5);
-        listNode.next.next = new ListNode(1);
-        listNode.next.next.next = new ListNode(9);
-        //链表的反转
-        revertList(listNode);
-        //右旋转链表
-        rotateRight(listNode,2);
-        //删除链表到倒数第N个节点
-        removeNthFromEnd1(listNode,4);
-        //删除重复节点，使得每一个节点只出现一次
-        deleteDuplicatess(listNode);
-        //只要节点元素重复，就删除所有的
+        ListNode listNode = new ListNode(1);
+        listNode.next = new ListNode(2);
+        listNode.next.next = new ListNode(3);
+        listNode.next.next.next = new ListNode(3);
+        listNode.next.next.next.next= new ListNode(4);
+        listNode.next.next.next.next.next= new ListNode(5);
+//        //链表的反转
+//        revertList(listNode);
+//        //右旋转链表
+//        rotateRight(listNode,2);
+//        //删除链表到倒数第N个节点
+//        removeNthFromEnd1(listNode,4);
+//        //删除重复节点，使得每一个节点只出现一次
+//        deleteDuplicatess(listNode);
+//        //只要节点元素重复，就删除所有的
+        deleteDuplicates(listNode);
+        foreachListNode(listNode);
 
-        //判断链表是否有环
-        hasCycle(listNode);
-        //判断是不是回文链表
-        isPalindrome(listNode);
-        //合并有序链表
-        mergeTwoLists(listNode,listNode);
+//        //判断链表是否有环
+//        hasCycle(listNode);
+//        //判断是不是回文链表
+//        isPalindrome(listNode);
+//        //合并有序链表
+//        mergeTwoLists(listNode,listNode);
 
 
 
