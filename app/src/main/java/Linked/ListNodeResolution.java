@@ -1,5 +1,6 @@
 package Linked;
 
+import java.util.HashSet;
 import java.util.Stack;
 
 public class ListNodeResolution {
@@ -205,20 +206,17 @@ public class ListNodeResolution {
     //删除链表中的所有重复元素，剩余的元素都为非重复的
     public static ListNode deleteDuplicates(ListNode head) {
         if (head == null || head.next == null) {
-            return null;
+            return head;
         }
-        ListNode slow = head;
-        ListNode fast = head.next;
-        while (fast != null) {
-            if(slow.val == fast.val) {
-                fast = fast.next;
-            }else {
-                slow.next = fast;
-                slow = fast;
-                fast = fast.next;
+        if (head.val == head.next.val) {
+            while (head != null && head.next != null && head.val == head.next.val) {
+                head = head.next;
             }
+            return deleteDuplicates(head.next);
+        } else {
+            head.next = deleteDuplicates(head.next);
+            return head;
         }
-        return head;
 
     }
 
@@ -328,7 +326,8 @@ public class ListNodeResolution {
         listNode.next.next = new ListNode(3);
         listNode.next.next.next = new ListNode(3);
         listNode.next.next.next.next= new ListNode(4);
-        listNode.next.next.next.next.next= new ListNode(5);
+        listNode.next.next.next.next.next= new ListNode(4);
+        listNode.next.next.next.next.next.next= new ListNode(5);
 //        //链表的反转
 //        revertList(listNode);
 //        //右旋转链表
@@ -338,8 +337,8 @@ public class ListNodeResolution {
 //        //删除重复节点，使得每一个节点只出现一次
 //        deleteDuplicatess(listNode);
 //        //只要节点元素重复，就删除所有的
-        deleteDuplicates(listNode);
-        foreachListNode(listNode);
+        ListNode head = deleteDuplicates(listNode);
+        foreachListNode(head);
 
 //        //判断链表是否有环
 //        hasCycle(listNode);
