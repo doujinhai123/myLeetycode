@@ -16,7 +16,7 @@ class MinStack {
             stackB.push(node);
         }else {
             int peek = stackB.peek();
-            if(peek > node) {
+            if(peek >= node) {
                 stackB.push(node);
             } else {
                 stackB.push(peek);

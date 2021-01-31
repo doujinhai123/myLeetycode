@@ -9,6 +9,8 @@ public class Solution {
         MyStackToQueue myStackToQueue = new MyStackToQueue();
         //获取栈中的最小值
         MinStack minStack = new MinStack();
+        //获取队列的最大值
+        MaxQueue maxQueue = new MaxQueue();
 
 
     }
