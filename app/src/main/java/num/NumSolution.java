@@ -241,9 +241,6 @@ public class NumSolution {
 
     //数组中只出现一次
     public static int[] singleNumbers(int[] nums) {
-        int j = 0;
-        int counter = 0;
-
         HashMap<Integer, Integer> hashMap = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             if (hashMap.containsKey(nums[i])) {
@@ -251,7 +248,7 @@ public class NumSolution {
                 count = count + 1;
                 hashMap.put(nums[i], count);
             } else {
-                hashMap.put(nums[i], counter);
+                hashMap.put(nums[i], 1);
             }
         }
         ArrayList<Integer> arrayList = new ArrayList<>();
@@ -270,22 +267,6 @@ public class NumSolution {
     }
 
 
-
-
-    //只有一个重复的整数，找出这个重复的整数
-
-    public int findDuplicate(int[] nums) {
-        HashSet<Integer> hashSet = new HashSet<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (hashSet.contains(nums[i])) {
-                return nums[i];
-            } else {
-                hashSet.add(nums[i]);
-            }
-        }
-        return -1;
-
-    }
 
     //数组中次数超过一半的数字
     public static int majorityElement(int[] nums) {

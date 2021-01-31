@@ -1,22 +1,11 @@
 package Linked;
 
+import java.util.Stack;
+
 public class ListNodeResolution {
     //反转链表
     public static ListNode revertList(ListNode head) {
-//        ListNode pre = null;
-//        ListNode now = head;
-//        ListNode post = head.next;
-//        //注意是需要判断到post 不等于空的时候
-//        while (post != null) {
-//            now.next = pre;
-//            pre = now;
-//            now = post;
-//            post = post.next;
-//        }
-//        //注意是now的next 辞职post为null
-//        now.next = pre;
-//        return now;
-        if(head == null) {
+        if (head == null) {
             return null;
         }
         ListNode pre = null;
@@ -29,10 +18,10 @@ public class ListNodeResolution {
             fast = fast.next;
         }
         now.next = pre;
-
         return now;
-
     }
+
+    //反转m到n的链表
 
     public int[] reversePrint(ListNode head) {
         ListNode pre = null;
@@ -62,61 +51,62 @@ public class ListNodeResolution {
 
     }
 
-    public static void main(String[] args) {
-        ListNode listNode = new ListNode(4);
-        listNode.next = new ListNode(5);
-        listNode.next.next = new ListNode(1);
-        listNode.next.next.next = new ListNode(9);
-        deleteNode(listNode, 5);
-//        ListNode result = ListNodeResolution.revertList(listNode);
-//        while (result != null) {
-//            System.out.println(result.val);
-//            result = result.next;
-//        }
-//        ListNode listNode2 = new ListNode(1);
-//        listNode2.next = new ListNode(0);
-//        listNode2.next.next = new ListNode(1);
-//
-//        isPalindrome(listNode2);
-
-
-    }
-
     public static boolean isPalindrome(ListNode head) {
-
+        //使用栈解决
         //边界条件不用忘记了
-        if(head==null || head.next==null) {
+        if (head == null || head.next == null) {
             return true;
         }
-        ListNode p = new ListNode(-1);
-        ListNode low = p;
-        ListNode fast = p;
-        p.next = head;
-        //快慢指针不断迭代，找到中间节点
-        while(fast!=null && fast.next!=null) {
-            low = low.next;
-            fast = fast.next.next;
+        ListNode runner = head;
+        Stack<Integer> stack = new Stack<>();
+        while (runner != null) {
+            stack.push(runner.val);
+            runner = runner.next;
         }
-        ListNode cur = low.next;
-        ListNode pre = null;
-        low.next = null;
-        low = p.next;
-        //将链表一分为二之后，反转链表后半部分
-        while(cur!=null) {
-            ListNode tmp = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = tmp;
-        }
-        //将链表前半部分和 反转的后半部分对比
-        while(pre!=null) {
-            if(low.val!=pre.val) {
+        while (!stack.isEmpty()) {
+            Integer integer = stack.pop();
+            if(integer == head.val) {
+                head = head .next;
+            } else {
                 return false;
             }
-            low = low.next;
-            pre = pre.next;
         }
-        return true;
+
+        return  true;
+
+//        //边界条件不用忘记了
+//        if (head == null || head.next == null) {
+//            return true;
+//        }
+//        ListNode p = new ListNode(-1);
+//        ListNode low = p;
+//        ListNode fast = p;
+//        p.next = head;
+//        //快慢指针不断迭代，找到中间节点
+//        while (fast != null && fast.next != null) {
+//            low = low.next;
+//            fast = fast.next.next;
+//        }
+//        ListNode cur = low.next;
+//        ListNode pre = null;
+//        low.next = null;
+//        low = p.next;
+//        //将链表一分为二之后，反转链表后半部分
+//        while (cur != null) {
+//            ListNode tmp = cur.next;
+//            cur.next = pre;
+//            pre = cur;
+//            cur = tmp;
+//        }
+//        //将链表前半部分和 反转的后半部分对比
+//        while (pre != null) {
+//            if (low.val != pre.val) {
+//                return false;
+//            }
+//            low = low.next;
+//            pre = pre.next;
+//        }
+//        return true;
     }
 
     public static ListNode deleteNode(ListNode head, int val) {
@@ -168,7 +158,7 @@ public class ListNodeResolution {
 
     //删除链表倒数节点变形
     //删除链表的倒数第n个节点
-    public ListNode removeNthFromEnd1(ListNode head, int n) {
+    public static ListNode removeNthFromEnd1(ListNode head, int n) {
         if (head == null) {
             return null;
         }
@@ -188,18 +178,19 @@ public class ListNodeResolution {
         }
         return slow.next;
     }
-//删除链表中的重复元素
+
+    //删除链表中的重复元素
     public ListNode deleteDuplicates(ListNode head) {
-        if(head == null || head.next == null) {
+        if (head == null || head.next == null) {
             return null;
         }
         ListNode slow = head;
         ListNode fast = head.next;
         while (fast != null && fast.next != null) {
-            if(fast.val == slow.val) {
+            if (fast.val == slow.val) {
             } else {
                 slow.next = fast;
-              slow = fast;
+                slow = fast;
             }
             fast = fast.next;
         }
@@ -211,19 +202,20 @@ public class ListNodeResolution {
         ListNode node1 = headA;
         ListNode node2 = headB;
         while (node1 != node2) {
-            node1 = node1==null?node1 = headB:node1.next;
-            node2 = node2==null?node2 = headA:node2.next;
+            node1 = node1 == null ? node1 = headB : node1.next;
+            node2 = node2 == null ? node2 = headA : node2.next;
         }
         return node1;
     }
-//删除重复节点使得每个节点只出现一次
-    public ListNode deleteDuplicatess(ListNode head) {
-        if(head == null) {
+
+    //删除重复节点使得每个节点只出现一次
+    public static ListNode deleteDuplicatess(ListNode head) {
+        if (head == null) {
             return null;
         }
         ListNode runner = head;
         while (runner != null && runner.next != null) {
-            if(runner.val == runner.next.val) {
+            if (runner.val == runner.next.val) {
                 runner.next = runner.next.next;
             } else {
                 runner = runner.next;
@@ -233,9 +225,10 @@ public class ListNodeResolution {
         return head;
 
     }
+
     //删除链表中指定的所有的重复元素
     public ListNode removeElements(ListNode head, int val) {
-        if (head == null ) {
+        if (head == null) {
             return null;
         }
         ListNode newheader = new ListNode(-1);
@@ -243,16 +236,82 @@ public class ListNodeResolution {
         ListNode preheader = newheader;
         ListNode curheader = head;
         while (curheader != null) {
-            if(curheader.val == val) {
+            if (curheader.val == val) {
                 preheader.next = curheader.next;
                 curheader = curheader.next;
-            } else  {
+            } else {
                 preheader = curheader;
                 curheader = curheader.next;
             }
 
         }
         return newheader.next;
+    }
+    //判断链表是否有环
+    public static boolean hasCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null&&fast.next.next != null ) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return true;
+            }
+
+        }
+
+        return false;
+
+    }
+    //合并有序链表
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode head3 = new ListNode(-1);
+        ListNode runner = head3;
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                runner.next = new ListNode(l1.val);
+                runner = runner.next;
+                l1 = l1.next;
+            } else {
+                runner.next = new ListNode(l2.val);
+                l2 = l2.next;
+                runner = runner.next;
+            }
+        }
+        if (l1 == null) {
+            runner.next = l2;
+        } else {
+            runner.next = l1;
+        }
+        return head3.next;
+
+    }
+
+
+
+    public static void main(String[] args) {
+        ListNode listNode = new ListNode(4);
+        listNode.next = new ListNode(5);
+        listNode.next.next = new ListNode(1);
+        listNode.next.next.next = new ListNode(9);
+        //链表的反转
+        revertList(listNode);
+        //删除链表到倒数第N个节点
+        removeNthFromEnd1(listNode,4);
+        //删除重复节点，使得每一个节点只出现一次
+        deleteDuplicatess(listNode);
+        //只要节点元素重复，就删除所有的
+
+        //判断链表是否有环
+        hasCycle(listNode);
+        //判断是不是回文链表
+        isPalindrome(listNode);
+        //合并有序链表
+        mergeTwoLists(listNode,listNode);
+
+
+
+
     }
 
 

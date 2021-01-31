@@ -36,17 +36,28 @@ public class StringSolution {
 
     }
 
-    public static boolean judge(String str) {
-        if (str == null && str.length() <= 1) return true;
-        // write code here
-        for (int i = 0; i < str.length() / 2; i++) {
-            if (str.charAt(i) != str.charAt(str.length() - 1 - i)) {
-                return false;
-            } else {
-                return true;
+    public static boolean judge(int str) {
+        char[] charArray = String.valueOf(str).toCharArray();
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < charArray.length; i++) {
+            stack.push(charArray[i]);
+        }
+        for (int i = 0; i <  charArray.length; i++) {
+            if(stack.pop() != charArray[i]) {
+                return  false;
             }
         }
         return true;
+        //第二种方法，直接尅反转整数
+//        if(x < 0)
+//            return false;
+//        int cur = 0;
+//        int num = x;
+//        while(num != 0) {
+//            cur = cur * 10 + num % 10;
+//            num /= 10;
+//        }
+//        return cur == x;
     }
 
     //第一个只出现一次的字符
@@ -190,7 +201,7 @@ public class StringSolution {
         //反转单次顺序
         reverseWords("sdss");
         //判断是不是回文
-        judge("wewewe");
+        judge(1234);
         //有效括号
         System.out.println(isValid("()"));
         //替换空格
