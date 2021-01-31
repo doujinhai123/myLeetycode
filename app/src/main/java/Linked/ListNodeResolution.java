@@ -20,8 +20,31 @@ public class ListNodeResolution {
         now.next = pre;
         return now;
     }
+  // 旋转链表
+    public static ListNode rotateRight(ListNode head, int k) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+        ListNode faster = head;
+        ListNode slower = head;
+        ListNode newHeader = slower;
+        while (k != 0) {
+            faster = faster.next;
+            if(faster == null) {
+                return head;
+            }
+            k = k-1;
+        }
+        while (faster != null && faster.next != null) {
+            faster = faster.next;
+            slower = slower.next;
+        }
+        newHeader  = slower.next;
+        slower.next = null;
+        faster.next = head;
+        return newHeader;
 
-    //反转m到n的链表
+    }
 
     public int[] reversePrint(ListNode head) {
         ListNode pre = null;
@@ -296,6 +319,8 @@ public class ListNodeResolution {
         listNode.next.next.next = new ListNode(9);
         //链表的反转
         revertList(listNode);
+        //右旋转链表
+        rotateRight(listNode,2);
         //删除链表到倒数第N个节点
         removeNthFromEnd1(listNode,4);
         //删除重复节点，使得每一个节点只出现一次
