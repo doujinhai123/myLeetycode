@@ -328,28 +328,23 @@ public class ListNodeResolution {
         listNode.next.next.next.next= new ListNode(4);
         listNode.next.next.next.next.next= new ListNode(4);
         listNode.next.next.next.next.next.next= new ListNode(5);
-//        //链表的反转
-//        revertList(listNode);
-//        //右旋转链表
-//        rotateRight(listNode,2);
-//        //删除链表到倒数第N个节点
-//        removeNthFromEnd1(listNode,4);
-//        //删除重复节点，使得每一个节点只出现一次
-//        deleteDuplicatess(listNode);
-//        //只要节点元素重复，就删除所有的
+        //链表的反转
+        revertList(listNode);
+        //右旋转链表
+        rotateRight(listNode,2);
+        //删除链表到倒数第N个节点
+        removeNthFromEnd1(listNode,4);
+        //删除重复节点，使得每一个节点只出现一次
+        deleteDuplicatess(listNode);
+        //只要节点元素重复，就删除所有的
         ListNode head = deleteDuplicates(listNode);
         foreachListNode(head);
-
-//        //判断链表是否有环
-//        hasCycle(listNode);
-//        //判断是不是回文链表
-//        isPalindrome(listNode);
-//        //合并有序链表
-//        mergeTwoLists(listNode,listNode);
-
-
-
-
+        //判断链表是否有环
+        hasCycle(listNode);
+        //判断是不是回文链表
+        isPalindrome(listNode);
+        //合并有序链表
+        mergeTwoLists(listNode,listNode);
     }
 
 
