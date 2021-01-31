@@ -15,24 +15,6 @@ import java.util.Stack;
 class TreeSolution {
     ArrayList arrayList = new ArrayList();
 
-    public static void main(String[] args) {
-        String sss = "هوديس وبلوزات للرجال";
-       String[] result = sss.split(" ");
-
-        TreeNode treeNode = new TreeNode(1);
-        treeNode.left = new TreeNode(2);
-        treeNode.right = new TreeNode(3);
-        treeNode.left.left = new TreeNode(4);
-        treeNode.left.right = new TreeNode(5);
-        treeNode.right.left = new TreeNode(6);
-        treeNode.right.right = new TreeNode(7);
-        TreeSolution solution = new TreeSolution();
-        System.out.println(solution.levelOrderwwzhilist(treeNode));
-//        int valuer = lowestCommonAncestor(treeNode, new TreeNode(5), new TreeNode(6)).val;
-//        System.out.println(valuer);
-
-
-    }
      //view树的有多少个孩子
     public ArrayList<View> getViewCountByOrder(View rootview) {
         ArrayList<View> arrayList = new ArrayList<>();
@@ -75,7 +57,7 @@ class TreeSolution {
     }
 
     //二叉树的前序遍历 用stack实现
-    public List<Integer> preorder22TraversalByStack(TreeNode root) {
+    public List<Integer> preOrderByStack(TreeNode root) {
         List<Integer> result = new LinkedList<>();
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
@@ -96,7 +78,7 @@ class TreeSolution {
 
 
         //二叉树的后序非递归 根左右  变为根右左  在变为左右跟
-    public List<Integer> lastTraversalfeidigui(TreeNode root) {
+    public List<Integer> lastOrderByStack(TreeNode root) {
         ArrayList<Integer> arrayList = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
@@ -121,7 +103,7 @@ class TreeSolution {
     }
 
     //二叉树的中序非递归遍历
-    public List<Integer> midllefeidigui(TreeNode root) {
+    public List<Integer> middleOrderByStack(TreeNode root) {
         ArrayList<Integer> arrayList = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
         while (root != null || !stack.isEmpty()) {
@@ -162,7 +144,7 @@ class TreeSolution {
 //
 //    }
     //二叉树的层序遍历
-    public int[] levelOrder(TreeNode root) {
+    public int[] levelOrderByInt(TreeNode root) {
         ArrayList<Integer> arrayList = new ArrayList();
         if (root == null) {
             return new int[0];
@@ -190,7 +172,7 @@ class TreeSolution {
 
 
     //二叉树的层序遍历
-    public List<List<Integer>> levelOrderww(TreeNode root) {
+    public List<List<Integer>> levelOrderByList(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
         if (root == null) {
             return result;
@@ -218,7 +200,7 @@ class TreeSolution {
 
     //二叉树的层序
     //二叉树的层序遍历
-    public static void levelOrderwwvoid(TreeNode root) {
+    public static void levelOrderByQueue(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
@@ -236,7 +218,7 @@ class TreeSolution {
 
 
     //二叉树的之字形打印
-    public static void levelOrderwwzhi(TreeNode root) {
+    public static void levelOrderZ(TreeNode root) {
         Stack<TreeNode> stack1 = new Stack<>();
         stack1.push(root);
         Stack<TreeNode> stack2 = new Stack<>();
@@ -266,7 +248,7 @@ class TreeSolution {
     }
 
     //二叉树的之字形打印
-    public static ArrayList<ArrayList<Integer>> levelOrderwwzhilist(TreeNode root) {
+    public static ArrayList<ArrayList<Integer>> levelOrderwwzList(TreeNode root) {
         ArrayList<ArrayList<Integer>> lists = new ArrayList<>();
         if(root == null) {
             return lists;
@@ -455,7 +437,7 @@ class TreeSolution {
         if (root == null) {
             return 0;
         }
-        ArrayList<Integer> arrayList = (ArrayList) midllefeidigui(root);
+        ArrayList<Integer> arrayList = (ArrayList) middleOrderByStack(root);
 
         return arrayList.get(arrayList.size() - 1);
 
@@ -645,5 +627,52 @@ class TreeSolution {
         if(left == null) return right;
         if(right == null) return left;
         return root;
+    }
+
+    public static void main(String[] args) {
+        String sss = "هوديس وبلوزات للرجال";
+        String[] result = sss.split(" ");
+
+        TreeNode treeNode = new TreeNode(1);
+        treeNode.left = new TreeNode(2);
+        treeNode.right = new TreeNode(3);
+        treeNode.left.left = new TreeNode(4);
+        treeNode.left.right = new TreeNode(5);
+        treeNode.right.left = new TreeNode(6);
+        treeNode.right.right = new TreeNode(7);
+        TreeSolution solution = new TreeSolution();
+        //二叉树的前序用stack实现
+        solution.preOrderByStack(treeNode);
+        //二叉树的后序stack
+        solution.lastOrderByStack(treeNode);
+        //二叉树的中序stack
+        solution.middleOrderByStack(treeNode);
+        //二叉树的层序遍历
+        solution.levelOrderByQueue(treeNode);
+        int[] ints = solution.levelOrderByInt(treeNode);
+        List<List<Integer>> list = solution.levelOrderByList(treeNode);
+        //二叉树之性打印
+        solution.levelOrderZ(treeNode);
+        ArrayList<ArrayList<Integer>> arrayList = solution.levelOrderwwzList(treeNode);
+        //二叉树的深度
+        solution.maxDepth(treeNode);
+        //是否为对称二叉树
+        solution.isSymmetric(treeNode);
+        //是否为平衡二叉树
+        solution.IsBalanced_Solution(treeNode);
+        //二叉树的所有路径
+        solution.binaryTreePathsall(treeNode);
+        //二叉树为某一和的路径
+        solution.pathSum(treeNode,34);
+        //二叉搜索数的最近公共祖先
+        solution.lowestSearchCommonAncestor(treeNode,treeNode,treeNode);
+        //二叉树的最近公共祖先
+        solution.lowestCommonAncestor(treeNode,treeNode,treeNode);
+
+
+//        int valuer = lowestCommonAncestor(treeNode, new TreeNode(5), new TreeNode(6)).val;
+//        System.out.println(valuer);
+
+
     }
 }
