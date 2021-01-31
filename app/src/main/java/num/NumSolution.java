@@ -539,10 +539,43 @@ public class NumSolution {
         return res;
     }
 
+    public static int[] spiralOrder(int[][] matrix) {
+        if(matrix.length == 0){
+            return new int[0];
+        }
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int up = 0, down = m - 1, left = 0, right = n - 1;
+        int[] res = new int[m * n];
+        int index = 0;
+        while(true){
+            for(int i = left;up <= down && i <= right;i++){
+                res[index++] = matrix[up][i];
+            }
+            up++;
+            for(int i = up;left <= right && i <= down;i++){
+                res[index++] = matrix[i][right];
+            }
+            right--;
+            for(int i = right;up <= down && i >= left;i--){
+                res[index++] = matrix[down][i];
+            }
+            down--;
+            for(int i = down;left <= right && i >= up;i--){
+                res[index++] = matrix[i][left];
+            }
+            left++;
+            if(index == m * n){
+                break;
+            }
+        }
+        return res;
+    }
 
 
     public static void main(String[] args) {
         int[] array = new int[]{1,2,3,4,5,6,7};
+        int[][] matrix = new int[3][4];
         //快速排序
         quickSort(array,0,array.length-1);
         //奇数和偶数调换
@@ -559,5 +592,8 @@ public class NumSolution {
         findContinuousSequence(15);
         //滑动窗口的最大值
         maxSlidingWindow(array,6);
+        //顺时针打印矩阵
+        spiralOrder(matrix);
+
     }
 }
