@@ -19,13 +19,9 @@ public class printerJiou {
                         Thread.sleep(1000);
                         if(i%2 == 0) {
                             System.out.println("打印的是偶数---------" + i);
-                            conditionA.await();
-                        } else {
                             conditionB.signalAll();
+                            conditionA.await();
                         }
-
-
-
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }finally {
@@ -34,6 +30,11 @@ public class printerJiou {
                 }
             }
         }).start();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         new Thread(new Runnable() {
             @Override
@@ -43,15 +44,11 @@ public class printerJiou {
                     reentrantLock.lock();
                     try {
                         Thread.sleep(1000);
-                        if(i%2 != 0) {
+                        if(i%2 == 1) {
                             System.out.println("打印的是ji数---------" + i);
-                            conditionB.await();
-                        } else {
                             conditionA.signalAll();
+                            conditionB.await();
                         }
-
-
-
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }finally {
