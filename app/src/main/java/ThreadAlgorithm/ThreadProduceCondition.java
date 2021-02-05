@@ -1,7 +1,5 @@
 package ThreadAlgorithm;
 
-import java.util.LinkedList;
-import java.util.Queue;
 
 class ThreadProduceCondition extends Thread {
     LockData mLockData;

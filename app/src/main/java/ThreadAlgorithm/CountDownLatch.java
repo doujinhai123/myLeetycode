@@ -1,10 +1,8 @@
 package ThreadAlgorithm;
 
-import java.util.concurrent.CountDownLatch;
-
-public class Test {
+public class CountDownLatch {
      public static void main(String[] args) {   
-         final CountDownLatch latch = new CountDownLatch(2);
+         final java.util.concurrent.CountDownLatch latch = new java.util.concurrent.CountDownLatch(2);
           
          new Thread(){
              public void run() {

@@ -3,8 +3,7 @@ package ThreadAlgorithm;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ABprinter {
-    static boolean flag = false;
+public class PrinterNum {
     public static void main(String[] args) {
         ReentrantLock reentrantLock = new ReentrantLock();
         Condition conditionA = reentrantLock.newCondition();
@@ -16,11 +15,15 @@ public class ABprinter {
                 while (true) {
                     reentrantLock.lock();
                     try {
-                        Thread.sleep(2000);
-                        System.out.println("AAAAA");
-                        conditionB.signalAll();
-                        conditionA.await();
+                        Thread.sleep(1000);
+                        for (int i = 0; i < 100; i++) {
+                            if(i % 2 == 0) {
+                                System.out.println("打印的为偶数"+i );
+                                conditionA.await();
+                            }
+                            conditionB.signalAll();
 
+                        }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } finally {
@@ -37,10 +40,15 @@ public class ABprinter {
                 while (true) {
                     reentrantLock.lock();
                     try {
-                        Thread.sleep(2000);
-                        System.out.println("BBBB");
-                        conditionA.signalAll();
-                        conditionB.await();
+                        Thread.sleep(1000);
+                        for (int i = 0; i < 100; i++) {
+                            if(i % 2  == 1) {
+                                System.out.println("打印的为奇数"+i);
+                                conditionB.await();
+                            }
+                            conditionA.notifyAll();
+
+                        }
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
