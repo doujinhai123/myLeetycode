@@ -9,7 +9,6 @@ public class ABprinter {
         ReentrantLock reentrantLock = new ReentrantLock();
         Condition conditionA = reentrantLock.newCondition();
         Condition conditionB = reentrantLock.newCondition();
-        Object object = new Object();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -50,6 +49,29 @@ public class ABprinter {
                 }
             }
         }).start();
+        //交替打印AB
+        Object object = new Object();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    synchronized(object) {
+                        System.out.println("打印------A");
+                    }
+                }
 
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    synchronized(object) {
+                        System.out.println("打印------B");
+                    }
+                }
+            }
+        }).start();
     }
 }
