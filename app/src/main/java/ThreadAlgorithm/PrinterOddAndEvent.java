@@ -72,7 +72,6 @@ public class PrinterOddAndEvent {
                             if (i % 2 == 0) {
                                 System.out.println("打印偶数线程为i----" + i);
                                 object.notifyAll();
-                            } else {
                                 object.wait();
                             }
                         } catch (InterruptedException e) {
@@ -92,7 +91,6 @@ public class PrinterOddAndEvent {
                             if (i % 2 == 1) {
                                 System.out.println("打印奇数线程为i----" + i);
                                 object.notifyAll();
-                            } else {
                                 object.wait();
                             }
                         } catch (InterruptedException e) {
