@@ -14,46 +14,41 @@ public class printerJiou {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
-                    reentrantLock.lock();
-                    try {
-                        for (int i = 0; i < 100; i++) {
-                            if (i % 2 == 0) {
-                                System.out.println("打印的为偶数" + i);
-                                conditionB.signalAll();
-                                conditionA.await();
-                            }
-
+                reentrantLock.lock();
+                try {
+                    for (int i = 0; i < 100; i++) {
+                        if (i % 2 == 0) {
+                            System.out.println("打印的为偶数" + i);
+                            conditionB.signalAll();
+                            conditionA.await();
                         }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } finally {
-                        reentrantLock.unlock();
-                    }
-                }
 
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    reentrantLock.unlock();
+                }
             }
         }).start();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
-                    reentrantLock.lock();
-                    try {
-                        for (int i = 0; i < 100; i++) {
-                            if (i % 2 == 1) {
-                                System.out.println("打印的为奇数" + i);
-                                conditionA.signalAll();
-                                conditionB.await();
-                            }
+                reentrantLock.lock();
+                try {
+                    for (int i = 0; i < 100; i++) {
+                        if (i % 2 == 1) {
+                            System.out.println("打印的为奇数" + i);
+                            conditionA.signalAll();
+                            conditionB.await();
                         }
-
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } finally {
-                        reentrantLock.unlock();
                     }
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    reentrantLock.unlock();
                 }
             }
         }).start();
