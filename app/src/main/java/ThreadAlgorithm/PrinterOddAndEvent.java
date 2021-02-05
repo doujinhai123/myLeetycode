@@ -3,7 +3,7 @@ package ThreadAlgorithm;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class PrinterNum {
+public class PrinterOddAndEvent {
     public static void main(String[] args) {
         ReentrantLock reentrantLock = new ReentrantLock();
         Condition conditionA = reentrantLock.newCondition();
