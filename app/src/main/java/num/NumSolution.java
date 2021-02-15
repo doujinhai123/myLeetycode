@@ -539,38 +539,60 @@ public class NumSolution {
         return res;
     }
 
-    public static int[] spiralOrder(int[][] matrix) {
-        if(matrix.length == 0){
-            return new int[0];
+    //顺时针打印矩阵
+    public static ArrayList<Integer> printMatrix(int [][] matrix) {
+        ArrayList<Integer>  list = new ArrayList<>();
+        if(matrix == null||matrix.length ==0)
+        {
+            return list;
         }
-        int m = matrix.length;
-        int n = matrix[0].length;
-        int up = 0, down = m - 1, left = 0, right = n - 1;
-        int[] res = new int[m * n];
-        int index = 0;
-        while(true){
-            for(int i = left;up <= down && i <= right;i++){
-                res[index++] = matrix[up][i];
+        int up = 0;
+        int down = matrix.length - 1; //行高
+        int left = 0;
+        int right = matrix[0].length - 1; // 列高
+        while(true)
+        {
+            //向右
+            for(int i = left;i<=right;i++)
+            {
+                list.add(matrix[up][i]);
             }
-            up++;
-            for(int i = up;left <= right && i <= down;i++){
-                res[index++] = matrix[i][right];
+            if(++up > down)
+            {
+                break;
             }
-            right--;
-            for(int i = right;up <= down && i >= left;i--){
-                res[index++] = matrix[down][i];
+            //向下
+            for(int i = up;i<=down;i++)
+            {
+                list.add(matrix[i][right]);
             }
-            down--;
-            for(int i = down;left <= right && i >= up;i--){
-                res[index++] = matrix[i][left];
+            if(--right < left)
+            {
+                break;
             }
-            left++;
-            if(index == m * n){
+            //向左
+            for(int i = right;i>=left;i--)
+            {
+                list.add(matrix[down][i]);
+            }
+            if(--down < up)
+            {
+                break;
+            }
+            //向上
+            for(int i = down;i>=up;i--)
+            {
+                list.add(matrix[i][left]);
+            }
+            if(++left > right)
+            {
                 break;
             }
         }
-        return res;
+        return list;
     }
+
+};
 
 
     public static void main(String[] args) {
