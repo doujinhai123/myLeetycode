@@ -1,4 +1,4 @@
-package designPatterns;
+package designPatterns.SinggeInstance;
 
 public class designPatterns {
     public static void main(String[] args) {

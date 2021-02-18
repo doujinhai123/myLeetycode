@@ -1,4 +1,4 @@
-package proxy;
+package designPatterns.StatiPproxy;
 
 public class UserDaoProxy implements IUserDao{
 

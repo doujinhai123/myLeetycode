@@ -1,4 +1,4 @@
-package dynamicProxy;
+package designPatterns.dynamicProxy;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;

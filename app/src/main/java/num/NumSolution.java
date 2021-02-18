@@ -89,7 +89,6 @@ public class NumSolution {
     }
 
 
-
     //无序数组
     public static int[] twoSum(int[] nums, int target) {
         int[] result = new int[2];
@@ -207,7 +206,7 @@ public class NumSolution {
                 left = mid + 1;
             } else if (nums[mid] > target) {
                 right = mid - 1;
-            } else if(nums[mid] == target) {
+            } else if (nums[mid] == target) {
                 return mid;
             }
         }
@@ -265,7 +264,6 @@ public class NumSolution {
         return arr;
 
     }
-
 
 
     //数组中次数超过一半的数字
@@ -515,23 +513,23 @@ public class NumSolution {
     }
 
     public static int[] maxSlidingWindow(int[] nums, int k) {
-        if(nums.length == 0)return nums;//0.预处理
+        if (nums.length == 0) return nums;//0.预处理
 
         int[] res = new int[nums.length - k + 1];
         //找出滑动窗口一开始的max值，并放入res
         int max = nums[0];
-        for(int j = 0; j < k; j++){
-            if(nums[j] > max)max = nums[j];
+        for (int j = 0; j < k; j++) {
+            if (nums[j] > max) max = nums[j];
         }
         res[0] = max;
         //向后滑动
-        for(int i = 1; i <= nums.length - k; i++){
-            if(nums[i - 1] == max){//如果窗口丢掉的值是滑动前的max，就重新在窗口内找max
+        for (int i = 1; i <= nums.length - k; i++) {
+            if (nums[i - 1] == max) {//如果窗口丢掉的值是滑动前的max，就重新在窗口内找max
                 max = nums[i];
-                for(int j = i + 1; j < i + k; j++){
-                    if(nums[j] > max)max = nums[j];
+                for (int j = i + 1; j < i + k; j++) {
+                    if (nums[j] > max) max = nums[j];
                 }
-            }else{//如果窗口丢掉的值不是之前的max，就在max和新加入窗口的值之中找大的一个
+            } else {//如果窗口丢掉的值不是之前的max，就在max和新加入窗口的值之中找大的一个
                 max = Math.max(max, nums[i + k - 1]);
             }
             res[i] = max;//放入res
@@ -540,72 +538,59 @@ public class NumSolution {
     }
 
     //顺时针打印矩阵
-    public static ArrayList<Integer> printMatrix(int [][] matrix) {
-        ArrayList<Integer>  list = new ArrayList<>();
-        if(matrix == null||matrix.length ==0)
-        {
+    public static ArrayList<Integer> printMatrix(int[][] matrix) {
+        ArrayList<Integer> list = new ArrayList<>();
+        if (matrix == null || matrix.length == 0) {
             return list;
         }
         int up = 0;
         int down = matrix.length - 1; //行高
         int left = 0;
         int right = matrix[0].length - 1; // 列高
-        while(true)
-        {
+        while (true) {
             //向右
-            for(int i = left;i<=right;i++)
-            {
+            for (int i = left; i <= right; i++) {
                 list.add(matrix[up][i]);
             }
-            if(++up > down)
-            {
+            if (++up > down) {
                 break;
             }
             //向下
-            for(int i = up;i<=down;i++)
-            {
+            for (int i = up; i <= down; i++) {
                 list.add(matrix[i][right]);
             }
-            if(--right < left)
-            {
+            if (--right < left) {
                 break;
             }
             //向左
-            for(int i = right;i>=left;i--)
-            {
+            for (int i = right; i >= left; i--) {
                 list.add(matrix[down][i]);
             }
-            if(--down < up)
-            {
+            if (--down < up) {
                 break;
             }
             //向上
-            for(int i = down;i>=up;i--)
-            {
+            for (int i = down; i >= up; i--) {
                 list.add(matrix[i][left]);
             }
-            if(++left > right)
-            {
+            if (++left > right) {
                 break;
             }
         }
         return list;
     }
 
-};
-
-
     public static void main(String[] args) {
-        int[] array = new int[]{1,2,3,4,5,6,7};
+        int[] array = new int[]{1, 2, 3, 4, 5, 6, 7};
         int[][] matrix = new int[3][4];
         //快速排序
-        quickSort(array,0,array.length-1);
+        quickSort(array, 0, array.length - 1);
         //奇数和偶数调换
         exchange(array);
         //二分查找
-        System.out.println(binarySearch(array,7));
+        System.out.println(binarySearch(array, 7));
         //二分查找 找到连个索引
-        System.out.println(twoSumSort(array,6));
+        System.out.println(twoSumSort(array, 6));
         ///三数之和为0
         System.out.println(squeezeSolution(array));
         ///数组中只出现一次的次数
@@ -613,9 +598,12 @@ public class NumSolution {
         //和为S的整数序列
         findContinuousSequence(15);
         //滑动窗口的最大值
-        maxSlidingWindow(array,6);
+        maxSlidingWindow(array, 6);
         //顺时针打印矩阵
-        spiralOrder(matrix);
+        printMatrix(matrix);
 
     }
-}
+};
+
+
+

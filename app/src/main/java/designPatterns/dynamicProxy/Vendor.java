@@ -1,4 +1,4 @@
-package dynamicProxy;
+package designPatterns.dynamicProxy;
 
 class Vendor implements Sell {
     @Override

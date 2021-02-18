@@ -1,4 +1,4 @@
-package dynamicProxy;
+package designPatterns.dynamicProxy;
 
 interface Sell {
     void sell();

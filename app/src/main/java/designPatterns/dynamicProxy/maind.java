@@ -1,6 +1,4 @@
-package dynamicProxy;
-
-import android.util.Log;
+package designPatterns.dynamicProxy;
 
 import java.lang.reflect.Proxy;
 
