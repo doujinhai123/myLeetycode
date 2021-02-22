@@ -56,30 +56,13 @@ public class printerJiou {
 
         //方式2通过对象锁
         Object object = new Object();
+
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 synchronized (object) {
-                    for (int i = 0; i < 100; i++) {
-                        try {
-                            Thread.sleep(200);
-                            if (i % 2 == 0) {
-                                System.out.println("打印偶数线程为i----" + i);
-                                object.notify();
-                                object.wait();
-                            }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        }).start();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                synchronized (object) {
-                    for (int i = 0; i < 100; i++) {
+                    for (int i = 1; i < 101; i++) {
                         try {
                             Thread.sleep(200);
                             if (i % 2 == 1) {
@@ -94,6 +77,32 @@ public class printerJiou {
                 }
             }
         }).start();
+
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                synchronized (object) {
+                    for (int i = 1; i < 101; i++) {
+                        try {
+                            Thread.sleep(200);
+                            if (i % 2 == 0) {
+                                System.out.println("打印偶数线程为i----" + i);
+                                object.notify();
+                                object.wait();
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }).start();
+
     }
 }
 
